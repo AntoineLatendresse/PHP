@@ -10,7 +10,6 @@ include_once("ScriptController.php");
 
 <!DOCTYPE html>
 <html>
-<title>Page Title</title>
 <body>
 
 <div>

@@ -13,7 +13,14 @@ if(isset($_POST["Animaux"]))
 
 function Vote($Vote)
 {
+    //Create File Name
+    $myfile = fopen("FichierText.txt", "w");
 
+    //Enter values from website to variables
+    $radioButtonSelected = $_POST['Animaux'];
+
+    //Write values in file
+    fwrite($myfile, $radioButtonSelected . "\n");
 }
 
 ?>

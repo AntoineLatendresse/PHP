@@ -13,16 +13,17 @@
     <meta charset="UTF-8">
     <h3>Quel est votre animal favoris?</h3>
     <fieldset>
-        <form action="../Labo1_PHP/ScriptFormulaire.php" method="post" id="Animaux">
+        <form action="../Labo1_PHP/ScriptController.php" method="post" id="Animaux">
             <input id="Chien" type="radio" name="Animaux" value="Chien">Chien<br>
             <input id="Chat" type="radio" name="Animaux" value="Chat">Chat<br>
             <input id="Oiseau" type="radio" name="Animaux" value="Oiseau">Oiseau<br>
-            <input id="Serpent" type="radio" name="Animaux" value="">Serpent<br>
+            <input id="Serpent" type="radio" name="Animaux" value="Serpent">Serpent<br>
             <input id="Singe" type="radio" name="Animaux" value="Singe">Singe<br>
+            <br>
+            <button type="submit" form="Animaux" value="Submit">Submit</button><br>
         </form>
     </fieldset>
     <br>
-    <button type="submit" form="Animaux" value="Submit">Submit</button>
 </head>
 <body>
 
