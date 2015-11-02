@@ -21,17 +21,17 @@ function Vote($Vote)
 
     //premiere approche
 
-    /*//Create File Name
+    //Create File Name
     $myfile = fopen("FichierText.txt", "w");
 
     //Enter values from website to variables
     $radioButtonSelected = $_POST['Animaux'];
 
     //Write values in file
-    fwrite($myfile, $radioButtonSelected . "\n");*/
+    fwrite($myfile, $radioButtonSelected . "\n");
 
 
-    //Deuxieme approche
+    /*//Deuxieme approche
     switch($_POST['Animaux']) {
         case "Chien":
             $chien++;
@@ -53,7 +53,7 @@ function Vote($Vote)
             $singe++;
             echo $singe;
             break;
-    }
+    }*/
 }
 
 ?>

@@ -6,6 +6,7 @@
  * Time: 11:43
  */
 include_once("ScriptController.php");
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +55,13 @@ include_once("ScriptController.php");
     </br>
     <a href="ScriptFormulaire.php">Voter</a>
 </div>
+
+<form action="../Labo1_PHP/ScriptController.php" method="post" id="Couleurs">
+    </br>
+    <input id="Vert" type="radio" name="Couleurs" value="Vert">Teintes de vert<br>
+    <input id="Rouge" type="radio" name="Couleurs" value="Rouge">Teintes de rouge<br>
+    <input id="Bleu" type="radio" name="Couleurs" value="Bleu">Teintes de bleu<br>
+</form>
 
 </body>
 </html>
