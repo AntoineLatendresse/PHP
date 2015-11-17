@@ -13,11 +13,12 @@
         $dir_contents = scandir($dir);
 
         foreach ($dir_contents as $file) {
-            $file_type = strtolower(end(explode('.', $file)));
+            $tmp = explode('.', $file);
+            $file_type = strtolower(end($tmp));
 
             if ($file !== '.' && $file !== '..' && in_array($file_type, $file_display) == true)
             {
-                echo '<img src="'. $dir. '/'. $file. '" alt="'. $file. '" />';
+                echo '<img src="'. $dir. '/'. $file. '" alt="'. $file. '" style="width: 200px; height: 150px" />';
             }
         }
     }
@@ -90,11 +91,6 @@
 
 <body>
 <div class="wrap">
-    <?php
-    if ($count > 0) {
-        echo "<p class='msg'>{$count} files uploaded</p>\n\n";
-    }
-    ?>
 <h1>Upload your photos: <h1>
         <form method="post" enctype="multipart/form-data">
             <input type="file" name="files[]" id="files" multiple="" directory="" webkitdirectory="" mozdirectory="">
