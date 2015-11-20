@@ -3,21 +3,51 @@
  * Created by Latendresse Antoine && Yannick Delaire.
  * Date: 11/16/15
  */
+//DisplayImage
 function getImages()
 {
-    $image_types = array(
-        'gif' => 'image/gif',
-        'png' => 'image/png',
-        'jpg' => 'image/jpeg',
-    );
     $dir = "images/";
-    foreach (scandir('images') as $entry) {
-        if (!is_dir($entry)) {
-            if (in_array(mime_content_type('images/'. $entry), $image_types)) {
-                // do something with image
-                echo "<img class=\"photo\" src='$dir$entry' width='150px'/>";
+    $file_names = '';
+    if(is_dir($dir))
+    {
+        if($dh = opendir($dir))
+        {
+            while(($file = readdir($dh)) !== false)
+            {
+                if($file === '.' || $file === '..') continue;
+                echo '<img src="images/'.$file.'" width="200 height="150" alt="">';
+                $file_names .=$file. '<br>';
             }
+            closedir($dh);
         }
+    }
+    return $file_names;
+}
+?>
+<?php
+//UploadImage
+if(isset($_POST['upload_img']))
+{
+    $file_name = $_FILES['image']['name'];
+    $file_type = $_FILES['image']['type'];
+    $file_type = $_FILES['image']['size'];
+    $file_tmp_name = $_FILES['image']['tmp_name'];
+
+    if(move_uploaded_file($file_tmp_name, "images/$file_name"))
+    {
+        echo 'Image is uploaded !';
+    }
+}
+?>
+<?php
+//DeleteImage
+if(isset($_POST['delete_img']))
+{
+    $img_file = $_POST['filename'];
+    if($img_file)
+    {
+        unlink("images/$img_file");
+        header("Refresh:0");
     }
 }
 ?>
@@ -28,16 +58,6 @@ function getImages()
     <title>All your photos organized and easy to find</title>
     <link href="style.css" rel="stylesheet" media="all" type="text/css">
     <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
-    <style type="text/css">
-        a.fancybox img {
-            border: none;
-            box-shadow: 0 1px 7px rgba(0,0,0,0.6);
-            -o-transform: scale(1,1); -ms-transform: scale(1,1); -moz-transform: scale(1,1); -webkit-transform: scale(1,1); transform: scale(1,1); -o-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;
-        }
-        a.fancybox:hover img {
-            position: relative; z-index: 999; -o-transform: scale(1.03,1.03); -ms-transform: scale(1.03,1.03); -moz-transform: scale(1.03,1.03); -webkit-transform: scale(1.03,1.03); transform: scale(1.03,1.03);
-        }
-    </style>
 </head>
 
 <body>
@@ -67,19 +87,27 @@ function getImages()
 <div class="wrap">
     <h1>Your photos: </h1>
     <?php
-    getImages();
+    $file_names = getImages();
+    echo '<br>'.'<br>'.$file_names;
     ?>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/>
 </div>
 <div class="wrap">
     <h1>Upload your photos: </h1>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <input type="file" name="image"/>
         <input class="button" type="submit" value="Upload Image" name="upload_img" />
-        <input type="text" name="file_name" title="input"/>
-        <input type="submit" value="Delete Image" name="delete_img"
     </form>
+</div>
+<div class="wrap">
+<form action="" method="post">
+    <?php
+    if ( isset( $_POST['delete_img'] ) ) {echo "FUCK YESHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"; }
+    ?>
+    <h1>Delete your photos: </h1>
+    <input type="text" name="filename" title=""/>
+    <input type="submit" value="Delete Image" name="delete_img"/>
+</form>
 </div>
 </body>
 </html>
