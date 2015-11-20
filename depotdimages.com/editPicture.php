@@ -14,29 +14,24 @@
 <body>
 <div class="wrap">
     <?php
-    $repertoire = "upload/";
-
-    $fichiers = scandir($repertoire);
-
-    if ($fichiers !== FALSE)
-    {
-        for ($i = 0; $i < sizeof($fichiers); $i++)
-        {
-            $nomFichier = $fichiers[$i];
-            if ($nomFichier[0] != ".")
-            {
-                echo $nomFichier . "width=\"800\" height=\"600\" <br>";
+    $image_types = array(
+        'gif' => 'image/gif',
+        'png' => 'image/png',
+        'jpg' => 'image/jpeg',
+    );
+    $dir = "images/";
+    foreach (scandir('images') as $entry) {
+        if (!is_dir($entry)) {
+            if (in_array(mime_content_type('images/'. $entry), $image_types)) {
+                // do something with image
+                echo "<img src='$dir$entry' width='600px'/>";
             }
         }
     }
-    else
-    {
-        die("Erreur: repertoire invalide");
-    };
     ?>
 <h1>Upload your photos: </h1>
         <form method="post" enctype="multipart/form-data">
-            <input type="file" name="files[]" id="files" multiple="" directory="" webkitdirectory="" mozdirectory="">
+            <input type="file" name="files[]" id="files">
             <input class="button" type="submit" value="Upload" />
         </form>
 </div>
