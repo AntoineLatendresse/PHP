@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: 201087112
@@ -8,7 +9,7 @@
   session_start();
 
   include_once("../Controller/functions.php");
-
+  showHeader();
   verifyConnected();
 
 ?>
@@ -43,10 +44,13 @@
             </br>
 
             <div class="col-md-offset-2 col-md-2">
-                <input type="submit" value="Soumettre..." class="btn btn-default" /> <br /><br />
+                <input type="submit" value="Soumettre..." class="button" /> <br /><br />
             </div>
 
         </form>
     </div>
 </body>
 </html>
+<?php
+showFooter();
+?>

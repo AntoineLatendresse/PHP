@@ -68,4 +68,22 @@ function slow_equals($a, $b)
     }
     return $diff === 0;
 }
+
+function showHeader()
+{
+    ?>
+    <div class="wrap">
+        <h1 class="header-heading">La galerie d'images</h1>
+    </div>
+<?php
+}
+
+function showFooter()
+{
+    ?>
+    <div class="wrap">
+        <h1 class="header-heading"> Antoine Latendresse && Yannick Delaire </h1>
+    </div>
+<?php
+}
 ?>

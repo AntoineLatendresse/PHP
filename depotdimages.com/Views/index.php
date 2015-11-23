@@ -1,4 +1,6 @@
 <?php
+include_once("../Controller/functions.php");
+showHeader();
 define("LOGOUT", "../Controller/controller_logout.php");
 define("LOGIN", "../Controller/controller_login.php");
 /**
@@ -110,8 +112,15 @@ if(isset($_POST['delete_img']))
 </form>
 </div>
 <div class="wrap">
-    <a href="<?php echo LOGIN?>">Se connecter</a>
-    <a href="<?php echo LOGOUT?>">Se deconnecter</a>
+    <a href="<?php echo LOGIN?>">
+        <input  type="submit" value="Se connecter..." class="button" />
+    </a>
+    <a href="<?php echo LOGOUT?>">
+        <input  type="submit" value="Se deconnecter..." class="button" />
+    </a>
 </div>
 </body>
 </html>
+<?php
+showFooter();
+?>
