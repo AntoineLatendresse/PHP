@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>All your photos organized and easy to find</title>
-    <link href="style.css" rel="stylesheet" media="all" type="text/css">
+    <link href="../Styles/style.css" rel="stylesheet" media="all" type="text/css">
 </head>
 
 <body>

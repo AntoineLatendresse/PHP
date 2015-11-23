@@ -1,4 +1,6 @@
 <?php
+define("LOGOUT", "../Controller/controller_logout.php");
+define("LOGIN", "../Controller/controller_login.php");
 /**
  * Created by Latendresse Antoine && Yannick Delaire.
  * Date: 11/16/15
@@ -56,7 +58,7 @@ if(isset($_POST['delete_img']))
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>All your photos organized and easy to find</title>
-    <link href="style.css" rel="stylesheet" media="all" type="text/css">
+    <link href="../Styles/style.css" rel="stylesheet" media="all" type="text/css">
     <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
 </head>
 
@@ -101,13 +103,15 @@ if(isset($_POST['delete_img']))
 </div>
 <div class="wrap">
 <form action="" method="post">
-    <?php
-    if ( isset( $_POST['delete_img'] ) ) {echo "FUCK YESHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"; }
-    ?>
+
     <h1>Delete your photos: </h1>
     <input type="text" name="filename" title=""/>
     <input type="submit" value="Delete Image" name="delete_img"/>
 </form>
+</div>
+<div class="wrap">
+    <a href="<?php echo LOGIN?>">Se connecter</a>
+    <a href="<?php echo LOGOUT?>">Se deconnecter</a>
 </div>
 </body>
 </html>
