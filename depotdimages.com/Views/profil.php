@@ -1,12 +1,13 @@
 <?php
-showHeader();
 /**
  * Created by PhpStorm.
  * User: 201087112
  * Date: 2015-11-23
  * Time: 15:54
  */
-
+include_once("../Controller/functions.php");
+showHeader();
+verifyConnected();
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,16 +18,16 @@ showHeader();
 <body>
     <div class="wrap">
 
-        <form action="<?php echo CONTROLLER_UPDATE_PASSWORD ?>" method="post">
+        <form action=" method="post">
 
-            <label>Nom d'usager :</label>
-
-            <label>Mot de passe :</label>
-
-            <label>Prenom :</label>
-
-            <label>Nom :</label>
-
+            <label>Nom d'usager :</label> <br> <br>
+                <input type="text" name="Username"><br><br>
+            <label>Mot de passe :</label> <br> <br>
+                <input type="text" name="Password"><br><br>
+            <label>Prenom :</label> <br> <br>
+                <input type="text" name="FirstName"><br><br>
+            <label>Nom :</label> <br> <br>
+                <input type="text" name="FirstName"><br><br>
             <a href="">
                 <input  type="submit" value="Modifier..." class="button" />
             </a>

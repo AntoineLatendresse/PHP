@@ -10,7 +10,7 @@ define("LOGIN", "../Controller/controller_login.php");
 //DisplayImage
 function getImages()
 {
-    $dir = "images/";
+    $dir = "../images/";
     $file_names = '';
     if(is_dir($dir))
     {
@@ -19,7 +19,7 @@ function getImages()
             while(($file = readdir($dh)) !== false)
             {
                 if($file === '.' || $file === '..') continue;
-                echo '<img src="images/'.$file.'" width="200 height="150" alt="">';
+                echo '<img src="../images/'.$file.'" width="200 height="150" alt="">';
                 $file_names .=$file. '<br>';
             }
             closedir($dh);
