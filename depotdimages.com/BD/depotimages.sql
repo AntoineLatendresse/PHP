@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 23 Novembre 2015 à 21:48
+-- Généré le :  Jeu 26 Novembre 2015 à 19:13
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -36,6 +36,17 @@ BEGIN
   SELECT Username, Pass_word, FirstName, LastName FROM utilisateurs WHERE Username = PUSERNAME;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UPDATE_PROFIL`(IN `PNOUTILISATEUR` INT(11), IN `PUSERNAME` VARCHAR(25), IN `PNEWPASSWORD` VARCHAR(25), IN `PFIRSTNAME` VARCHAR(25), IN `PLASTNAME` VARCHAR(25))
+    NO SQL
+BEGIN
+    UPDATE utilisateurs
+    SET Username = PUSERNAME,
+    	Pass_word = PNEWPASSWORD,
+        FirstName = PFIRSTNAME,
+        LastName = PLASTNAME
+    WHERE NoUtilisateur = PNOUTILISATEUR;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -45,19 +56,20 @@ DELIMITER ;
 --
 
 CREATE TABLE IF NOT EXISTS `utilisateurs` (
+  `NoUtilisateur` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(25) NOT NULL,
   `Pass_word` varchar(25) NOT NULL,
   `FirstName` varchar(25) NOT NULL,
-  `LastName` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `LastName` varchar(25) NOT NULL,
+  PRIMARY KEY (`NoUtilisateur`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`Username`, `Pass_word`, `FirstName`, `LastName`) VALUES
-('Admin', 'Admin', 'Admin', 'Admin'),
-('Admin', 'Admin', 'Admin', 'Admin');
+INSERT INTO `utilisateurs` (`NoUtilisateur`, `Username`, `Pass_word`, `FirstName`, `LastName`) VALUES
+(1, 'Admin', 'Admin', 'Antoine', 'Latendresse');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
