@@ -19,6 +19,21 @@ function dbConnect()
     }
 }
 
+function updatePassword($username, $newPassword, $newPasswordConfirm, $firstName, $lastName)
+{
+    $query = dbConnect()->prepare("CALL UPDATE_PROFIL(?,?,?,?,?)");
+
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->bindParam(2, $newPassword, PDO::PARAM_STR);
+    $query->bindParam(3, $newPasswordConfirm, PDO::PARAM_STR);
+    $query->bindParam(4, $firstName, PDO::PARAM_STR);
+    $query->bindParam(5, $lastName, PDO::PARAM_STR);
+
+    $query->execute();
+
+    $query->closeCursor();
+}
+
 function verifyConnected()
 {
     if(isset($_SESSION[ "connected" ]))

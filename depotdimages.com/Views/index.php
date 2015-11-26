@@ -3,6 +3,7 @@ include_once("../Controller/functions.php");
 showHeader();
 define("LOGOUT", "../Controller/controller_logout.php");
 define("LOGIN", "../Controller/controller_login.php");
+define("PROFIL", "../Views/profil.php");
 /**
  * Created by Latendresse Antoine && Yannick Delaire.
  * Date: 11/16/15
@@ -114,6 +115,9 @@ if(isset($_POST['delete_img']))
 <div class="wrap">
     <a href="<?php echo LOGIN?>">
         <input  type="submit" value="Se connecter..." class="button" />
+    </a>
+    <a href="<?php echo PROFIL?>">
+        <input  type="submit" value="Modifier..." class="button" />
     </a>
     <a href="<?php echo LOGOUT?>">
         <input  type="submit" value="Se deconnecter..." class="button" />

@@ -22,12 +22,14 @@ verifyConnected();
 
             <label>Nom d'usager :</label> <br> <br>
                 <input type="text" name="Username"><br><br>
-            <label>Mot de passe :</label> <br> <br>
-                <input type="text" name="Password"><br><br>
+            <label>Nouveau mot de passe :</label> <br> <br>
+                <input type="text" name="NewPassword"><br><br>
+            <label>Confirmation nouveau mot de passe :</label> <br> <br>
+                <input type="text" name="ConfirmPassword"><br><br>
             <label>Prenom :</label> <br> <br>
                 <input type="text" name="FirstName"><br><br>
             <label>Nom :</label> <br> <br>
-                <input type="text" name="FirstName"><br><br>
+                <input type="text" name="LastName"><br><br>
             <a href="">
                 <input  type="submit" value="Modifier..." class="button" />
             </a>
