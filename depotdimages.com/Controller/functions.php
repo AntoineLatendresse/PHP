@@ -5,12 +5,12 @@
  * Date: 2015-11-23
  * Time: 15:02
  */
+
 function dbConnect()
 {
     try
     {
         return new PDO('mysql:host=localhost;dbname=depotimages', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        mysql_set_charset("utf8", PDO);
     }
     catch (Exception $e)
     {
@@ -23,14 +23,15 @@ function menu()
     ?>
     <div id='cssmenu'>
     <ul>
-       <li class='active'><a href="../Views/index.php">Acceuil</a></li>
+       <li class='active'><a href="../Views/login.php">Login</a></li>
+        <li><a href="../Views/index.php">Gallery</a></li>
        <li><a href="../Views/profil.php">Profil</a></li>
     </ul>
     </div>
     <?php
 }
 
-function updatePassword($username, $newPassword, $newPasswordConfirm, $firstName, $lastName)
+function updateProfil($username, $newPassword, $newPasswordConfirm, $firstName, $lastName)
 {
     $query = dbConnect()->prepare("CALL UPDATE_PROFIL(?,?,?,?,?)");
 

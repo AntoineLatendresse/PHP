@@ -8,7 +8,6 @@
 
 	// Initialisation de la session
 	session_start();
-
 	include_once('functions.php');
 
 
@@ -25,7 +24,6 @@
         if( verification( $username, $password ) )
         {
             unset($_SESSION[ 'username' ]);
-            $_SESSION[ 'username_usager' ] = $username;
             $_SESSION[ 'connected' ] = true;
             header('Location: ../Views/index.php');
         }
@@ -48,11 +46,18 @@
         // On va récupérer l'utilisateur précis
         $reponse = getUser($username);
 
-        $connected = true;
-        // le nom et le prénom servent à assurer à l'utilisateur qu'il est connecté
-        // et connecté avec le bon compte
-        $_SESSION['first_name'] = $reponse[0]['FirstName'];
-        $_SESSION['last_name'] = $reponse[0]['LastName'];
+        // On vérifie si username et mot de passe correspondent
+        if (($reponse[0][ "Pass_word" ] == $password) )
+        {
+            $connected = true;
+            // le nom et le prénom servent à assurer à l'utilisateur qu'il est connecté
+            // et connecté avec le bon compte
+            $_SESSION['first_name'] = $reponse[0]['Prenom'];
+            $_SESSION['last_name'] = $reponse[0]['Nom'];
+
+        } else {
+            $connected = false;
+        }
 
         return $connected;
     }
