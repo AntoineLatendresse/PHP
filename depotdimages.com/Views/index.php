@@ -3,7 +3,7 @@ include_once("../Controller/functions.php");
 showHeader();
 define("LOGOUT", "../Controller/controller_logout.php");
 define("LOGIN", "../Controller/controller_login.php");
-define("PROFIL", "../Views/pofil.php");
+define("PROFIL", "../Views/profil.php");
 /**
  * Created by Latendresse Antoine && Yannick Delaire.
  * Date: 11/16/15

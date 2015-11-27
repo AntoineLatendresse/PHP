@@ -5,7 +5,6 @@
  * Date: 2015-11-23
  * Time: 15:02
  */
-
 function dbConnect()
 {
     try
@@ -17,6 +16,18 @@ function dbConnect()
     {
         die('Erreur : ' . $e->getMessage());
     }
+}
+
+function menu()
+{
+    ?>
+    <div id='cssmenu'>
+    <ul>
+       <li class='active'><a href="../Views/index.php">Acceuil</a></li>
+       <li><a href="../Views/profil.php">Profil</a></li>
+    </ul>
+    </div>
+    <?php
 }
 
 function updatePassword($username, $newPassword, $newPasswordConfirm, $firstName, $lastName)
@@ -86,6 +97,7 @@ function slow_equals($a, $b)
 
 function showHeader()
 {
+    menu();
     ?>
     <div class="wrap">
         <h1 class="header-heading">La galerie d'images</h1>
