@@ -10,7 +10,6 @@
 	session_start();
 	include_once('functions.php');
 
-
 	// Si on a reçu les données d'un formulaire et qu'elles ne sont pas vident
 	if( isset( $_POST[ 'UserName' ] ) && isset( $_POST[ 'Password' ] ) && !empty($_POST[ 'UserName' ] ) && !empty($_POST[ 'Password' ] ))
     {

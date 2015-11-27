@@ -26,6 +26,7 @@ function menu()
        <li class='active'><a href="../Views/login.php">Login</a></li>
         <li><a href="../Views/index.php">Gallery</a></li>
        <li><a href="../Views/profil.php">Profil</a></li>
+        <li><?php if (isset($_SESSION['username'])) echo "Welcome:", $_SESSION['username']; ?> </li>
     </ul>
     </div>
     <?php
@@ -93,6 +94,16 @@ function slow_equals($a, $b)
         $diff |= ord($a[$i]) ^ ord($b[$i]);
     }
     return $diff === 0;
+}
+
+function showHeaderProfil()
+{
+    menu();
+    ?>
+    <div class="wrap">
+        <h1 class="header-heading">Gestionnaire de mon Profil</h1>
+    </div>
+    <?php
 }
 
 function showHeader()

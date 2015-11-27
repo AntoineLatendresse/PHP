@@ -6,7 +6,7 @@
  * Time: 15:54
  */
 include_once("../Controller/functions.php");
-showHeader();
+showHeaderProfil();
 verifyConnected();
 ?>
 <!DOCTYPE html>
