@@ -18,14 +18,14 @@ verifyConnected();
 <body>
     <div class="wrap">
 
-        <form action=" method="post">
+        <form action="../Controller/controller_profil.php" method="post">
 
             <label>Nom d'usager :</label> <br> <br>
                 <input type="text" name="Username"><br><br>
             <label>Nouveau mot de passe :</label> <br> <br>
                 <input type="text" name="NewPassword"><br><br>
             <label>Confirmation nouveau mot de passe :</label> <br> <br>
-                <input type="text" name="ConfirmPassword"><br><br>
+                <input type="text" name="NewPasswordConfirm"><br><br>
             <label>Prenom :</label> <br> <br>
                 <input type="text" name="FirstName"><br><br>
             <label>Nom :</label> <br> <br>
