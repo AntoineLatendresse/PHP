@@ -16,25 +16,25 @@ verifyConnected();
     <link href="../Styles/style.css" rel="stylesheet" media="all" type="text/css">
 </head>
 <body>
-    <div class="wrap">
+<div class="wrap">
 
-        <form action="../Controller/controller_profil.php" method="post">
+    <form action="../Controller/controller_profil.php" method="post">
 
-            <label>Nom d'usager :</label> <br> <br>
-                <input type="text" name="Username"><br><br>
-            <label>Nouveau mot de passe :</label> <br> <br>
-                <input type="text" name="NewPassword"><br><br>
-            <label>Confirmation nouveau mot de passe :</label> <br> <br>
-                <input type="text" name="NewPasswordConfirm"><br><br>
-            <label>Prenom :</label> <br> <br>
-                <input type="text" name="FirstName"><br><br>
-            <label>Nom :</label> <br> <br>
-                <input type="text" name="LastName"><br><br>
-            <a href="">
-                <input  type="submit" value="Modifier..." class="button" />
-            </a>
+        <label>Nom d'usager :</label> <br> <br>
+        <input type="text" name="Username" title=""><br><br>
+        <label>Nouveau mot de passe :</label> <br> <br>
+        <input type="text" name="NewPassword" title=""><br><br>
+        <label>Confirmation nouveau mot de passe :</label> <br> <br>
+        <input type="text" name="NewPasswordConfirm" title=""><br><br>
+        <label>Prenom :</label> <br> <br>
+        <input type="text" name="FirstName" title=""><br><br>
+        <label>Nom :</label> <br> <br>
+        <input type="text" name="LastName" title=""><br><br>
+        <a href="">
+            <input  type="submit" value="Modifier..." class="button" />
+        </a>
 
-        </form>
+    </form>
 </div>
 </body>
 </html>

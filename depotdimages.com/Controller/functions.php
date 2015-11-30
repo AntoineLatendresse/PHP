@@ -6,6 +6,10 @@
  * Time: 15:02
  */
 
+define("LOGOUT", "../Controller/controller_logout.php");
+define("LOGIN", "../Controller/controller_login.php");
+define("PROFIL", "../Views/profil.php");
+
 function dbConnect()
 {
     try
@@ -22,12 +26,21 @@ function menu()
 {
     ?>
     <div id='cssmenu'>
-    <ul>
-       <li class='active'><a href="../Views/login.php">Login</a></li>
-        <li><a href="../Views/index.php">Gallery</a></li>
-       <li><a href="../Views/profil.php">Profil</a></li>
-        <li><?php if (isset($_SESSION['username'])) echo "Welcome:", $_SESSION['username']; ?> </li>
-    </ul>
+        <ul>
+            <li class='active'><a href="../Views/login.php">Login</a></li>
+            <li><a href="../Views/index.php">Gallery</a></li>
+            <li><a href="../Views/profil.php">Profil</a></li>
+            <li><a href="<?php echo LOGIN?>">
+                <input  type="submit" value="Se connecter..." class="button" />
+            </a></li>
+            <li><a href="<?php echo PROFIL?>">
+                <input  type="submit" value="Modifier..." class="button" />
+            </a></li>
+            <li><a href="<?php echo LOGOUT?>">
+                <input  type="submit" value="Se deconnecter..." class="button" />
+            </a></li>
+            <li><?php if (isset($_SESSION['username'])) echo "Welcome:", $_SESSION['username']; ?> </li>
+        </ul>
     </div>
     <?php
 }
@@ -96,6 +109,61 @@ function slow_equals($a, $b)
     return $diff === 0;
 }
 
+//DisplayImage
+function getImages()
+{
+    $dir = "../images/";
+    $file_names = '';
+    if(is_dir($dir))
+    {
+        if($dh = opendir($dir))
+        {
+            while(($file = readdir($dh)) !== false)
+            {
+                if($file === '.' || $file === '..') continue;
+                echo '<img src="../images/'.$file.'" width="200 height="150" alt="">';
+                $file_names .=$file. '<br>';
+            }
+            closedir($dh);
+        }
+    }
+    return $file_names;
+}
+
+//UploadImage
+function upload_Image()
+{
+    $ext_type = array('gif','jpg','jpe','jpeg','png');
+    $maxsize    = 2097152;
+
+    if(isset($_POST['upload_img']))
+    {
+        $file_name = $_FILES['image']['name'];
+        $file_type = $_FILES['image']['type'];
+        $file_size = $_FILES['image']['size'];
+        $file_tmp_name = $_FILES['image']['tmp_name'];
+
+        if(move_uploaded_file($file_tmp_name, "images/$file_name") && $file_type == $ext_type && $file_size < $maxsize)
+        {
+            echo 'Image is uploaded !';
+        }
+    }
+}
+
+//DeleteImage
+function delete_Image()
+{
+    if(isset($_POST['delete_img']))
+    {
+        $img_file = $_POST['filename'];
+        if($img_file)
+        {
+            unlink("images/$img_file");
+            header("Refresh:0");
+        }
+    }
+}
+
 function showHeaderProfil()
 {
     menu();
@@ -113,7 +181,7 @@ function showHeader()
     <div class="wrap">
         <h1 class="header-heading">La galerie d'images</h1>
     </div>
-<?php
+    <?php
 }
 
 function showFooter()
@@ -122,6 +190,6 @@ function showFooter()
     <div class="wrap">
         <h1 class="header-heading"> Antoine Latendresse && Yannick Delaire </h1>
     </div>
-<?php
+    <?php
 }
 ?>

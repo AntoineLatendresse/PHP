@@ -5,12 +5,11 @@
  * Date: 2015-11-23
  * Time: 15:35
  */
-   session_start();
+session_start();
 
-   define("VIEW_INDEX", "../Views/index.php");
+define("VIEW_INDEX", "../Views/index.php");
 
-   session_destroy();
-   unset( $_SESSION );
+session_destroy();
+unset( $_SESSION );
 
-   header('Location: ' . VIEW_INDEX);
-?>
+header('Location: ' . VIEW_INDEX);

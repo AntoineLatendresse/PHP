@@ -46,4 +46,3 @@ if ($i == 0)
     updateProfil($username, $newPassword, $firstName, $lastName);
     header('Location: ../Views/index.php');
 }
-?>
