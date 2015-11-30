@@ -1,33 +1,33 @@
 $( document ).ready(function() {
     console.log( "ready!" );
-    jQuery.validator.setDefaults({
-        debug: true,
-        success: "valid"
-    });
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
 
-    $('#form1').validate({
-        rules:{
-            Email:
+$('#form1').validate({
+    rules:{
+    Email:
             {
 
-                required:true,
-                email:true
+            required:true,
+            email:true
             },
-            password:
+    password:
             {
-                required:true,
-                minlength:3,
-                maxlength:10
+            required:true,
+            minlength:3,
+            maxlength:10
             },
-            password_again:{
-                equalTo:"#password"
+    password_again:{
+            equalTo:"#password"
 
             }
-        },
+          },
 
-        highlight: function(element) {
+          highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
-
+        
         },
         unhighlight: function(element) {
             $(element).closest('.form-group').removeClass('has-error');
@@ -42,5 +42,5 @@ $( document ).ready(function() {
             }
         }
 
-    })
+})
 });

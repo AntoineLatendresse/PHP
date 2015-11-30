@@ -13,28 +13,28 @@ verifyConnected();
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="../css/style.css" rel="stylesheet" media="all" type="text/css">
+    <link href="../Styles/style.css" rel="stylesheet" media="all" type="text/css">
 </head>
 <body>
-<div class="wrap">
+    <div class="wrap">
 
-    <form action="../Controller/controller_profil.php" method="post">
+        <form action="../Controller/controller_profil.php" method="post">
 
-        <label>Nom d'usager :</label> <br> <br>
-        <input type="text" name="Username" title="Username"><br><br>
-        <label>Nouveau mot de passe :</label> <br> <br>
-        <input type="text" name="NewPassword" title="NewPassword"><br><br>
-        <label>Confirmation nouveau mot de passe :</label> <br> <br>
-        <input type="text" name="NewPasswordConfirm" title="NewPasswordConfirm"><br><br>
-        <label>Prenom :</label> <br> <br>
-        <input type="text" name="FirstName" title="FirstName"><br><br>
-        <label>Nom :</label> <br> <br>
-        <input type="text" name="LastName" title="LastName"><br><br>
-        <a href="">
-            <input  type="submit" value="Modifier..." class="button" />
-        </a>
+            <label>Nom d'usager :</label> <br> <br>
+                <input type="text" name="Username"><br><br>
+            <label>Nouveau mot de passe :</label> <br> <br>
+                <input type="text" name="NewPassword"><br><br>
+            <label>Confirmation nouveau mot de passe :</label> <br> <br>
+                <input type="text" name="NewPasswordConfirm"><br><br>
+            <label>Prenom :</label> <br> <br>
+                <input type="text" name="FirstName"><br><br>
+            <label>Nom :</label> <br> <br>
+                <input type="text" name="LastName"><br><br>
+            <a href="">
+                <input  type="submit" value="Modifier..." class="button" />
+            </a>
 
-    </form>
+        </form>
 </div>
 </body>
 </html>
