@@ -30,12 +30,14 @@ if(isset($_POST["Username"]) && isset($_POST['NewPassword']) && isset($_POST['Ne
 }
 
 // On vérifie si des champs sont vides
-if (empty($_POST["Username"])) {
+if (empty($_POST["Username"]))
+{
     $error_fieldsempty = '- Un ou plusieurs champs de texte sont vides. Veuillez les remplir. \n';
     $i++;
 }
 
-if($newPassword != $newPasswordConfirm) {
+if($newPassword != $newPasswordConfirm)
+{
     $error_passwordconfirm = '- Le mot de passe et sa confirmation sont différents. \n';
     $i++;
 }
@@ -46,4 +48,3 @@ if ($i == 0)
     updateProfil($username, $newPassword, $firstName, $lastName);
     header('Location: ../Views/index.php');
 }
-?>
