@@ -18,8 +18,7 @@ showHeader();
 <div class="wrap">
     <h1>Your photos: </h1>
     <?php
-    $file_names = getImages();
-    echo '<br>'.'<br>'.$file_names;
+    getImages();
     ?>
 </div>
 <div class="wrap">
@@ -31,7 +30,6 @@ showHeader();
 </div>
 <div class="wrap">
 <form action="" method="post">
-
     <h1>Delete your photos: </h1>
     <input type="text" name="filename" title=""/>
     <input type="submit" value="Delete Image" name="delete_img"/>
