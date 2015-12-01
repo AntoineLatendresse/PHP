@@ -223,7 +223,7 @@ function getImages()
                     make_thumb($images_dir.$file,$thumbnail_image,$thumbs_width);
                 }
             }
-            echo '<a href="',$images_dir.$file,'" class="photo-link smoothbox" rel="gallery" onclick="showImg(this.href,800,600,\'This is Image1\'); return false"><img src="',$thumbnail_image,'"/></a>';
+            echo '<a href="gestimage.php?',$images_dir.$file,'" name="imageClick" class="photo-link smoothbox" rel="gallery"><img src="',$thumbnail_image,'" /></a>';
             if($index % $images_per_row == 0) { echo '<div class="clear"></div>'; }
         }
         echo '<div class="clear"></div>';
@@ -232,13 +232,10 @@ function getImages()
         echo '<p>There are no images in this gallery.</p>';
     }
 }
-
 //DisplayGestionnaireImage
-function getGestImages()
+function getGestImages($image)
 {
-    $images_dir = '../images/';
-    $image_files = get_files($images_dir);
-    echo '<a href="',$images_dir,'" class="photo-link smoothbox" rel="gallery"><img src="',$image_files,'" /></a>';
+    echo $image;
 }
 
 //UploadImage

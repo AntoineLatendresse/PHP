@@ -17,7 +17,7 @@ showHeader();
     <div class="wrap">
         <h1>Your photos: </h1>
         <?php
-        getGestImages();
+        getGestImages($_POST['imageClick']);
         ?>
     </div>
     </body>
