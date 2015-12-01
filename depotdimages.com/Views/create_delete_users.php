@@ -6,7 +6,7 @@
  * Time: 15:54
  */
 include_once("../Controller/functions.php");
-showHeaderProfil();
+showHeaderAdmin();
 verifyConnected();
 ?>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ verifyConnected();
         <label>Nom :</label> <br> <br>
         <input type="text" name="LastName"><br><br>
         <a href="">
-            <input  name="create" type="submit" value="Creer..." class="button" />
+            <input name="create" type="submit" value="Creer..." class="button" />
         </a>
         <a href="">
             <input  name="delete" type="submit" value="Supprimer..." class="button" />

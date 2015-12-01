@@ -272,6 +272,16 @@ function delete_Image()
     }
 }
 
+function showHeaderAdmin()
+{
+    menu();
+    ?>
+    <div class="wrap">
+        <h1 class="header-heading">Gestionnaire de l'administrateur</h1>
+    </div>
+<?php
+}
+
 function showHeaderProfil()
 {
     menu();

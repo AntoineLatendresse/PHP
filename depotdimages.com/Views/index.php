@@ -34,7 +34,7 @@ showHeader();
 <form action="" method="post">
     <h1>Delete your photos: </h1>
     <input type="text" name="filename" title=""/>
-    <input type="submit" value="Delete Image" name="delete_img"/>
+    <input class="button" type="submit" value="Delete Image" name="delete_img"/>
 </form>
 </div>
 </body>
