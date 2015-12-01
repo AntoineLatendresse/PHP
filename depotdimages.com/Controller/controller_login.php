@@ -17,13 +17,12 @@ if( isset( $_POST[ 'UserName' ] ) && isset( $_POST[ 'Password' ] ) && !empty($_P
     $username = $_POST[ 'UserName' ];
     $password = $_POST[ 'Password' ];
 
-    $_SESSION[ 'username' ] = $username;
 
     // On teste si les informations sont valides
     if( verification( $username, $password ) )
     {
-        unset($_SESSION[ 'username' ]);
         $_SESSION[ 'connected' ] = true;
+        $_SESSION[ 'username' ] = $username;
         header('Location: ../Views/index.php');
     }
     else
@@ -51,8 +50,8 @@ function verification( $username, $password )
         $connected = true;
         // le nom et le prénom servent à assurer à l'utilisateur qu'il est connecté
         // et connecté avec le bon compte
-        $_SESSION['first_name'] = $reponse[0]['Prenom'];
-        $_SESSION['last_name'] = $reponse[0]['Nom'];
+        $_SESSION['first_name'] = $reponse[0]['FirstName'];
+        $_SESSION['last_name'] = $reponse[0]['LastName'];
 
     } else {
         $connected = false;

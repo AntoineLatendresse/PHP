@@ -25,25 +25,55 @@ function dbConnect()
 
 function menu()
 {
-    ?>
-    <div id='cssmenu'>
-        <ul>
-            <li class='active'><a href="../Views/login.php">Login</a></li>
-            <li><a href="../Views/index.php">Gallery</a></li>
-            <li><a href="../Views/profil.php">Profil</a></li>
-            <li><a href="<?php echo LOGIN?>">
-                <input  type="submit" value="Se connecter..." class="button" />
-            </a></li>
-            <li><a href="<?php echo PROFIL?>">
-                <input  type="submit" value="Modifier..." class="button" />
-            </a></li>
-            <li><a href="<?php echo LOGOUT?>">
-                <input  type="submit" value="Se deconnecter..." class="button" />
-            </a></li>
-            <li><?php if (isset($_SESSION['username'])) echo "Welcome:", $_SESSION['username']; ?> </li>
-        </ul>
-    </div>
+    if(isset($_SESSION['username']) && $_SESSION['username'] == 'Admin') {
+        ?>
+        <div id='cssmenu'>
+            <ul>
+                <?php if(!isset($_SESSION["connected"]) || $_SESSION[ "connected" ] == false)
+                {
+                    ?>
+                    <li class='active'><a href="../Views/login.php">Login</a></li>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <li><a href="../Controller/controller_logout.php">Logout</a></li>
+                    <?php
+                }
+                ?>
+                <li><a href="../Views/index.php">Gallery</a></li>
+                <li><a href="../Views/profil.php">Profil</a></li>
+                <li><a href="../Views/create_delete_users.php">Gestion</a></li>
+                <li><?php if (isset($_SESSION['username'])) echo "Welcome:", $_SESSION['username']; ?></li>
+            </ul>
+        </div>
     <?php
+    }
+    else{
+        ?>
+        <div id='cssmenu'>
+            <ul>
+                <?php if(!isset($_SESSION["connected"]) || $_SESSION[ "connected" ] == false)
+                {
+                    ?>
+                    <li class='active'><a href="../Views/login.php">Login</a></li>
+                <?php
+                }
+                else
+                {
+                    ?>
+                    <li><a href="../Controller/controller_logout.php">Logout</a></li>
+                <?php
+                }
+                ?>
+                <li><a href="../Views/index.php">Gallery</a></li>
+                <li><a href="../Views/profil.php">Profil</a></li>
+                <li><?php if (isset($_SESSION['username'])) echo "Welcome:", $_SESSION['username']; ?></li>
+            </ul>
+        </div>
+        <?php
+    }
 }
 
 function updateProfil($username, $newPassword, $firstName, $lastName)
@@ -98,6 +128,32 @@ function getPassword($username)
     $query->closeCursor();
 
     return $result[0][ "Pass_word" ];
+}
+
+function createUser($username, $password, $firstName, $lastName)
+{
+    $query = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?)");
+
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->bindParam(2, $password, PDO::PARAM_STR);
+    $query->bindParam(3, $firstName, PDO::PARAM_STR);
+    $query->bindParam(4, $lastName, PDO::PARAM_STR);
+
+    $query->execute();
+    $query->CloseCursor();
+}
+
+function deleteUser($username, $password, $firstName, $lastName)
+{
+    $query = dbConnect()->prepare("CALL DELETE_USER(?,?,?,?)");
+
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->bindParam(2, $password, PDO::PARAM_STR);
+    $query->bindParam(3, $firstName, PDO::PARAM_STR);
+    $query->bindParam(4, $lastName, PDO::PARAM_STR);
+
+    $query->execute();
+    $query->CloseCursor();
 }
 
 function slow_equals($a, $b)

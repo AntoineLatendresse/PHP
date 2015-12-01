@@ -9,6 +9,7 @@ session_start();
 
 define("VIEW_INDEX", "../Views/index.php");
 
+$_SESSION = array();
 session_destroy();
 unset( $_SESSION );
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("../Controller/functions.php");
 showHeader();
 /**
@@ -19,6 +20,7 @@ showHeader();
     <h1>Your photos: </h1>
     <?php
     getImages();
+    var_dump($_SESSION);
     ?>
 </div>
 <div class="wrap">

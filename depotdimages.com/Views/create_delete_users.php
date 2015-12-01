@@ -18,7 +18,7 @@ verifyConnected();
 <body>
 <div class="wrap">
 
-    <form action="../Controller/controller_profil.php" method="post">
+    <form action="../Controller/controller_create_delete.php" method="post">
 
         <label>Nom d'usager :</label> <br> <br>
         <input type="text" name="Username"><br><br>
@@ -29,10 +29,10 @@ verifyConnected();
         <label>Nom :</label> <br> <br>
         <input type="text" name="LastName"><br><br>
         <a href="">
-            <input  type="create" value="Créer..." class="button" />
+            <input  name="create" type="submit" value="Creer..." class="button" />
         </a>
         <a href="">
-            <input  type="delete" value="Supprimer..." class="button" />
+            <input  name="delete" type="submit" value="Supprimer..." class="button" />
         </a>
 
     </form>

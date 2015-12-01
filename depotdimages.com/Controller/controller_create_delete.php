@@ -6,15 +6,19 @@
  * Time: 11:33 AM
  */
 
-if (isset($_POST['create'])) {
+session_start();
 
+include_once('functions.php');
+
+if (isset($_POST['create'])) {
+echo "aaaaaaaaaaaaaaaaaaaaaaaalllllllllllllllllllllllllllloooooooooooooooooooooooooooooooo";
     $i = 0;
     $username = NULL;
     $password = NULL;
     $firstName = NULL;
     $lastName = NULL;
 
-//isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
+//isset($var) vï¿½rifie que la variable a ï¿½tï¿½ crï¿½ï¿½ et qu'elle n'est pas nulle
     if (isset($_POST['Username']) && isset($_POST['NewPassword']) && isset($_POST['FirstName']) && isset($_POST['LastName'])) {
         $username = $_POST['Username'];
         $password = $_POST['NewPassword'];
@@ -22,24 +26,17 @@ if (isset($_POST['create'])) {
         $lastName = $_POST['LastName'];
     }
 
-    $bdd = dbConnect();
-
-//Vérification du mot de passe
-    if (!empty($password)) {
-        $error_passwordconfirm = '- Le mot de passe et sa confirmation sont différents. \n';
-        $i++;
-    }
-
 // S'il n'y a aucune erreur
     if ($i == 0) {
-        createUser($bdd, $username, $password, $firstName, $lastName);
+        createUser($username, $password, $firstName, $lastName);
 
         header('Location: ../Views/index.php');
     } else {
-        header('Location: ../Views/create_delete_users.php');
+        header('Location: ../Views/index.php');
     }
 }
-else if (isset($_POST['delete'])){
+
+if (isset($_POST['delete'])){
 
     $i = 0;
     $username = NULL;
@@ -47,7 +44,7 @@ else if (isset($_POST['delete'])){
     $firstName = NULL;
     $lastName = NULL;
 
-//isset($var) vérifie que la variable a été créé et qu'elle n'est pas nulle
+//isset($var) vï¿½rifie que la variable a ï¿½tï¿½ crï¿½ï¿½ et qu'elle n'est pas nulle
     if (isset($_POST['Username']) && isset($_POST['NewPassword']) && isset($_POST['FirstName']) && isset($_POST['LastName'])) {
         $username = $_POST['Username'];
         $password = $_POST['NewPassword'];
@@ -55,17 +52,9 @@ else if (isset($_POST['delete'])){
         $lastName = $_POST['LastName'];
     }
 
-    $bdd = dbConnect();
-
-//Vérification du mot de passe
-    if (!empty($password)) {
-        $error_passwordconfirm = '- Le mot de passe et sa confirmation sont différents. \n';
-        $i++;
-    }
-
 // S'il n'y a aucune erreur
     if ($i == 0) {
-        deleteUser($bdd, $username, $password, $firstName, $lastName);
+        deleteUser($username, $password, $firstName, $lastName);
 
         header('Location: ../Views/index.php');
     } else {
