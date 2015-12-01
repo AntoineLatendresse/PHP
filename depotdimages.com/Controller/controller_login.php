@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 201087112
- * Date: 2015-11-23
- * Time: 15:06
- */
-
-// Initialisation de la session
-session_start();
 include_once('functions.php');
+/**
+ * Created by Latendresse Antoine && Yannick Delaire.
+ * Date: 11/16/15
+ */
+session_start();
 
 // Si on a reçu les données d'un formulaire et qu'elles ne sont pas vident
 if( isset( $_POST[ 'UserName' ] ) && isset( $_POST[ 'Password' ] ) && !empty($_POST[ 'UserName' ] ) && !empty($_POST[ 'Password' ] ))
@@ -28,8 +24,10 @@ if( isset( $_POST[ 'UserName' ] ) && isset( $_POST[ 'Password' ] ) && !empty($_P
     else
     {
         // Sinon on avertit l'utilisateur
-        $_SESSION[ 'connection_info' ] =  "Nom d'utilisateur ou mot de passe invalide.";
+        $_SESSION[ 'connection_info' ] =  "Nom d'utilisateur et / ou mot de passe incorrect.\\nRéessayez.";
         header('Location: ../Views/login.php');
+        $message = "Nom d'utilisateur et / ou mot de passe incorrect.\nRéessayez.";
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 else

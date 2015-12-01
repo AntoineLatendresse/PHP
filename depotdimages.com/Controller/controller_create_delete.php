@@ -1,17 +1,12 @@
 <?php
+include_once('functions.php');
 /**
- * Created by PhpStorm.
- * User: Antoine
- * Date: 11/30/2015
- * Time: 11:33 AM
+ * Created by Latendresse Antoine && Yannick Delaire.
+ * Date: 11/16/15
  */
-
 session_start();
 
-include_once('functions.php');
-
 if (isset($_POST['create'])) {
-echo "aaaaaaaaaaaaaaaaaaaaaaaalllllllllllllllllllllllllllloooooooooooooooooooooooooooooooo";
     $i = 0;
     $username = NULL;
     $password = NULL;
@@ -58,7 +53,6 @@ if (isset($_POST['delete'])){
 
         header('Location: ../Views/index.php');
     } else {
-        header('Location: ../Views/create_delete_users.php');
+        header('Location: ../Views/admin.php');
     }
 }
-?>

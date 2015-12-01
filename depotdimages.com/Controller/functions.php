@@ -1,11 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: 201087112
- * Date: 2015-11-23
- * Time: 15:02
+ * Created by Latendresse Antoine && Yannick Delaire.
+ * Date: 11/16/15
  */
-
 define("LOGOUT", "../Controller/controller_logout.php");
 define("LOGIN", "../Controller/controller_login.php");
 define("PROFIL", "../Views/profil.php");
@@ -44,11 +41,11 @@ function menu()
                 ?>
                 <li><a href="../Views/index.php">Gallery</a></li>
                 <li><a href="../Views/profil.php">Profil</a></li>
-                <li><a href="../Views/create_delete_users.php">Gestion</a></li>
+                <li><a href="../Views/admin.php">Gestion</a></li>
                 <li><?php if (isset($_SESSION['username'])) echo "Welcome:", $_SESSION['username']; ?></li>
             </ul>
         </div>
-    <?php
+        <?php
     }
     else{
         ?>
@@ -58,13 +55,13 @@ function menu()
                 {
                     ?>
                     <li class='active'><a href="../Views/login.php">Login</a></li>
-                <?php
+                    <?php
                 }
                 else
                 {
                     ?>
                     <li><a href="../Controller/controller_logout.php">Logout</a></li>
-                <?php
+                    <?php
                 }
                 ?>
                 <li><a href="../Views/index.php">Gallery</a></li>
@@ -92,14 +89,12 @@ function updateProfil($username, $newPassword, $firstName, $lastName)
 
 function verifyConnected()
 {
-    if(isset($_SESSION[ "connected" ]))
+    if(empty($_SESSION['connected']))
     {
-        if($_SESSION[ "connected" ])
-        {
-            // Redirige vers la page d'accueil.
-            header('Location: ../Views/index.php');
-        }
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . '../Views/login.php');
+        exit;
     }
+    echo 'You will only see this if you are logged in.';
 }
 
 function getUser($username)
@@ -166,8 +161,8 @@ function slow_equals($a, $b)
     return $diff === 0;
 }
 
-/* function:  generates thumbnail */
-function make_thumb($src,$dest,$desired_width) {
+function make_thumb($src,$dest,$desired_width)
+{
     /* read the source image */
     $source_image = imagecreatefromjpeg($src);
     $width = imagesx($source_image);
@@ -182,13 +177,16 @@ function make_thumb($src,$dest,$desired_width) {
     imagejpeg($virtual_image,$dest);
 }
 
-/* function:  returns files from dir */
-function get_files($images_dir,$exts = array('jpg')) {
+function get_files($images_dir,$exts = array('jpg'))
+{
     $files = array();
-    if($handle = opendir($images_dir)) {
-        while(false !== ($file = readdir($handle))) {
+    if($handle = opendir($images_dir))
+    {
+        while(false !== ($file = readdir($handle)))
+        {
             $extension = strtolower(get_file_extension($file));
-            if($extension && in_array($extension,$exts)) {
+            if($extension && in_array($extension,$exts))
+            {
                 $files[] = $file;
             }
         }
@@ -197,12 +195,12 @@ function get_files($images_dir,$exts = array('jpg')) {
     return $files;
 }
 
-/* function:  returns a file's extension */
-function get_file_extension($file_name) {
+function get_file_extension($file_name)
+{
     return substr(strrchr($file_name,'.'),1);
 }
 
-//DisplayImage
+//****DisplayImage*****************************************************************************************************/
 function getImages()
 {
     /** settings **/
@@ -214,12 +212,16 @@ function getImages()
     /** generate photo gallery **/
     $image_files = get_files($images_dir);
     if(count($image_files)) {
-        foreach($image_files as $index=>$file) {
+        foreach($image_files as $index=>$file)
+        {
+            ksort($image_files);
             $index++;
             $thumbnail_image = $thumbs_dir.$file;
-            if(!file_exists($thumbnail_image)) {
+            if(!file_exists($thumbnail_image))
+            {
                 $extension = get_file_extension($thumbnail_image);
-                if($extension) {
+                if($extension)
+                {
                     make_thumb($images_dir.$file,$thumbnail_image,$thumbs_width);
                 }
             }
@@ -228,17 +230,21 @@ function getImages()
         }
         echo '<div class="clear"></div>';
     }
-    else {
+    else
+    {
         echo '<p>There are no images in this gallery.</p>';
     }
 }
-//DisplayGestionnaireImage
+//****DisplayImage*****************************************************************************************************/
+
+//****DisplayGestionnaireImage*****************************************************************************************/
 function getGestImages($image)
 {
-    echo $image;
+    echo "<img src='../images/".$image['image']."' />";
 }
+//****DisplayGestionnaireImage*****************************************************************************************/
 
-//UploadImage
+//****UploadImage******************************************************************************************************/
 function upload_Image()
 {
     $ext_type = array('gif','jpg','jpe','jpeg','png');
@@ -257,8 +263,9 @@ function upload_Image()
         }
     }
 }
+//****UploadImage******************************************************************************************************/
 
-//DeleteImage
+//****DeleteImage******************************************************************************************************/
 function delete_Image()
 {
     if(isset($_POST['delete_img']))
@@ -271,6 +278,54 @@ function delete_Image()
         }
     }
 }
+//****DeleteImage******************************************************************************************************/
+
+//****bdCommentaire()**************************************************************************************************/
+function bdCommentaire()
+{
+    mysql_connect("mysql host name","mysql user name","mysql password");
+    mysql_select_db("database name");
+    $name=$_POST['name'];
+    $comment=$_POST['comment'];
+    $submit=$_POST['submit'];
+
+    $dbLink = mysql_connect("mysql host name", "mysql user name", "mysql password");
+    mysql_query("SET character_set_client=utf8", $dbLink);
+    mysql_query("SET character_set_connection=utf8", $dbLink);
+
+    if($submit)
+    {
+        if($name&&$comment)
+        {
+            $insert=mysql_query("INSERT INTO comment (name,comment) VALUES ('$name','$comment') ");
+            echo "<meta HTTP-EQUIV='REFRESH' content='0; url=commentindex.php'>";
+        }
+        else
+        {
+            echo "please fill out all fields";
+        }
+    }
+}
+//****bdCommentaire()**************************************************************************************************/
+
+//****afficherbdCommantaire()******************************************************************************************/
+function afficherbdCommantaire()
+{
+    $dbLink = mysql_connect("mysql host name", "mysql username", "mysql password");
+    mysql_query("SET character_set_results=utf8", $dbLink);
+    mb_language('uni');
+    mb_internal_encoding('UTF-8');
+
+    $getquery=mysql_query("SELECT * FROM comment ORDER BY id DESC");
+    while($rows=mysql_fetch_assoc($getquery))
+    {
+        $id=$rows['id'];
+        $name=$rows['name'];
+        $comment=$rows['comment'];
+        echo $name . '<br/>' . '<br/>' . $comment . '<br/>' . '<br/>' . '<hr size="1"/>'
+        ;}
+}
+//****afficherbdCommantaire()******************************************************************************************/
 
 function showHeaderAdmin()
 {
@@ -279,7 +334,7 @@ function showHeaderAdmin()
     <div class="wrap">
         <h1 class="header-heading">Gestionnaire de l'administrateur</h1>
     </div>
-<?php
+    <?php
 }
 
 function showHeaderProfil()
@@ -288,6 +343,26 @@ function showHeaderProfil()
     ?>
     <div class="wrap">
         <h1 class="header-heading">Gestionnaire de mon Profil</h1>
+    </div>
+    <?php
+}
+
+function showHeaderLogin()
+{
+    menu();
+    ?>
+    <div class="wrap">
+        <h1 class="header-heading">Inscription / C’est gratuit (et ça le restera toujours)</h1>
+    </div>
+    <?php
+}
+
+function showGestHeader()
+{
+    menu();
+    ?>
+    <div class="wrap">
+        <h1 class="header-heading">Gestionnaire d'images</h1>
     </div>
     <?php
 }
@@ -306,7 +381,7 @@ function showFooter()
 {
     ?>
     <div class="wrap">
-        <h1 class="header-heading"> Antoine Latendresse && Yannick Delaire </h1>
+        <h1 class="header-heading"> Copyright © 2015 | depotdimages.com by AL&&YD Themes </h1>
     </div>
     <?php
 }

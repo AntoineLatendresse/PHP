@@ -1,46 +1,61 @@
-$( document ).ready(function() {
+/**
+ * Created by Latendresse Antoine && Yannick Delaire.
+ * Date: 11/16/15
+ */
+$( document ).ready(function()
+{
     console.log( "ready!" );
-jQuery.validator.setDefaults({
-  debug: true,
-  success: "valid"
-});
+    jQuery.validator.setDefaults
+    (
+        {
+            debug: true,
+            success: "valid"
+        }
+    );
 
-$('#form1').validate({
-    rules:{
-    Email:
+    $('#form1').validate
+    (
+        {
+            rules:
             {
-
-            required:true,
-            email:true
+                Email:
+                {
+                    required:true,
+                    email:true
+                },
+                password:
+                {
+                    required:true,
+                    minlength:3,
+                    maxlength:10
+                },
+                password_again:
+                {
+                    equalTo:"#password"
+                }
             },
-    password:
+
+            highlight: function(element)
             {
-            required:true,
-            minlength:3,
-            maxlength:10
+                $(element).closest('.form-group').addClass('has-error');
             },
-    password_again:{
-            equalTo:"#password"
-
-            }
-          },
-
-          highlight: function(element) {
-            $(element).closest('.form-group').addClass('has-error');
-        
-        },
-        unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
-        },
-        errorElement: 'span',
-        errorClass: 'help-block',
-        errorPlacement: function(error, element) {
-            if(element.parent('.input-group').length) {
-                error.insertAfter(element.parent());
-            } else {
-                error.insertAfter(element);
+            unhighlight: function(element)
+            {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function(error, element)
+            {
+                if(element.parent('.input-group').length)
+                {
+                    error.insertAfter(element.parent());
+                }
+                else
+                {
+                    error.insertAfter(element);
+                }
             }
         }
-
-})
+    )
 });

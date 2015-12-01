@@ -1,12 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: 201087112
- * Date: 2015-11-23
- * Time: 15:35
+ * Created by Latendresse Antoine && Yannick Delaire.
+ * Date: 11/16/15
  */
 session_start();
-
 define("VIEW_INDEX", "../Views/index.php");
 
 $_SESSION = array();

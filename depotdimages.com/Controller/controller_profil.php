@@ -1,13 +1,10 @@
 <?php
+include_once("../Controller/functions.php");
 /**
- * Created by PhpStorm.
- * User: 201087112
- * Date: 2015-11-26
- * Time: 12:45
+ * Created by Latendresse Antoine && Yannick Delaire.
+ * Date: 11/16/15
  */
 session_start();
-
-include_once("../Controller/functions.php");
 
 //Variables pour gerer les erreur (si il y a un erreur je fais + 1)
 $i = 0;
@@ -30,12 +27,14 @@ if(isset($_POST["Username"]) && isset($_POST['NewPassword']) && isset($_POST['Ne
 }
 
 // On vérifie si des champs sont vides
-if (empty($_POST["Username"])) {
+if (empty($_POST["Username"]))
+{
     $error_fieldsempty = '- Un ou plusieurs champs de texte sont vides. Veuillez les remplir. \n';
     $i++;
 }
 
-if($newPassword != $newPasswordConfirm) {
+if($newPassword != $newPasswordConfirm)
+{
     $error_passwordconfirm = '- Le mot de passe et sa confirmation sont différents. \n';
     $i++;
 }
