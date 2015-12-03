@@ -5,7 +5,7 @@ include_once("../Controller/functions.php");
  * Date: 11/16/15
  */
 session_start();
-showGestHeader();
+showHeader("Gestionnaire d'images");
 verifyConnected();
 bdCommentaire();
 ?>

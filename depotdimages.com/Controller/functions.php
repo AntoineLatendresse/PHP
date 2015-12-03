@@ -327,52 +327,12 @@ function afficherbdCommantaire()
 }
 //****afficherbdCommantaire()******************************************************************************************/
 
-function showHeaderAdmin()
+function showHeader($string)
 {
     menu();
     ?>
     <div class="wrap">
-        <h1 class="header-heading">Gestionnaire de l'administrateur</h1>
-    </div>
-    <?php
-}
-
-function showHeaderProfil()
-{
-    menu();
-    ?>
-    <div class="wrap">
-        <h1 class="header-heading">Gestionnaire de mon Profil</h1>
-    </div>
-    <?php
-}
-
-function showHeaderLogin()
-{
-    menu();
-    ?>
-    <div class="wrap">
-        <h1 class="header-heading">Inscription / C’est gratuit (et ça le restera toujours)</h1>
-    </div>
-    <?php
-}
-
-function showGestHeader()
-{
-    menu();
-    ?>
-    <div class="wrap">
-        <h1 class="header-heading">Gestionnaire d'images</h1>
-    </div>
-    <?php
-}
-
-function showHeader()
-{
-    menu();
-    ?>
-    <div class="wrap">
-        <h1 class="header-heading">La galerie d'images</h1>
+        <h1 class="header-heading"><?=$string?></h1>
     </div>
     <?php
 }

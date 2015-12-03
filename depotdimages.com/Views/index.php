@@ -5,7 +5,7 @@ include_once("../Controller/functions.php");
  * Date: 11/16/15
  */
 session_start();
-showHeader();
+showHeader("La galerie d'images");
 //verifyConnected();
 ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
