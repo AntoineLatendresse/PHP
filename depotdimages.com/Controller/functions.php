@@ -347,22 +347,59 @@ function getGestImages($image)
 //****UploadImage******************************************************************************************************/
 function upload_Image()
 {
-    if(isset($_POST['upload_img']))
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["upload_img"]))
     {
-        $ext_type = array('gif','jpg','jpe','jpeg','png');
-        $maxsize    = 2097152;
-
-        if(isset($_POST['upload_img']))
+        //$uploadOk = 1;
+        $file_name = $_FILES['image']['name'];
+        $file_type = pathinfo("../images/$file_name",PATHINFO_EXTENSION);
+        $file_size = $_FILES['image']['size'];
+        $file_tmp_name = $_FILES['image']['tmp_name'];
+        $check = getimagesize($file_tmp_name);
+        if($check !== false)
         {
-            $file_name = $_FILES['image']['name'];
-            $file_type = $_FILES['image']['type'];
-            $file_size = $_FILES['image']['size'];
-            $file_tmp_name = $_FILES['image']['tmp_name'];
-
-            if(move_uploaded_file($file_tmp_name, "../images/$file_name"))
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        }
+        else
+        {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+        // Check if file already exists
+        if (file_exists("../images/$file_name"))
+        {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        // Check file size
+        if ($file_size > 10485760)
+        {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        // Allow certain file formats
+        if($file_type != "gif" && $file_type != "jpg" && $file_type != "jpe" && $file_type != "jpeg" && $file_type != "gif")
+        {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk != 0)
+        {
+            if (move_uploaded_file($file_tmp_name, "../images/$file_name"))
             {
                 header("Refresh:0");
+                echo "The file " . $file_name . " has been uploaded.";
             }
+            else
+            {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+        else // if everything is ok, try to upload file
+        {
+            echo "Sorry, your file was not uploaded.";
         }
     }
 }
