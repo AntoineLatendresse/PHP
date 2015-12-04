@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42f39a32-e837-41d3-88fd-b6bad3c1f522" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\wamp\www\PHP\depotdimages.com\images\Chrysanthemum.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\PHP\depotdimages.com\images\Jellyfish.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\PHP\depotdimages.com\images\Lighthouse.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/depotdimages.com/BD/depotimages.sql" afterPath="$PROJECT_DIR$/depotdimages.com/BD/depotimages.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/depotdimages.com/Controller/functions.php" afterPath="$PROJECT_DIR$/depotdimages.com/Controller/functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/depotdimages.com/Views/gestimage.php" afterPath="$PROJECT_DIR$/depotdimages.com/Views/gestimage.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/depotdimages.com/BD/loginManager.txt" afterPath="$PROJECT_DIR$/depotdimages.com/BD/loginManager.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PHP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,84 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/login.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="102" max-vertical-offset="748">
-              <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profil.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/profil.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.576923" vertical-offset="24" max-vertical-offset="918">
-              <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/depotdimages.com/Controller/functions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15437004" vertical-offset="5848" max-vertical-offset="8381">
-              <caret line="352" column="10" selection-start-line="352" selection-start-column="10" selection-end-line="352" selection-end-column="10" />
-              <folding>
-                <marker date="1449259876513" expanded="true" signature="1690:1808" placeholder="..." />
-                <marker date="1449259876513" expanded="true" signature="1734:1808" placeholder="..." />
-                <marker date="1449259876513" expanded="true" signature="1774:1808" placeholder="..." />
-                <marker date="1449259876513" expanded="true" signature="1928:2130" placeholder="..." />
-                <marker date="1449259876513" expanded="true" signature="1954:2130" placeholder="..." />
-                <marker date="1449259876513" expanded="true" signature="1968:2116" placeholder="..." />
-                <marker date="1449259876513" expanded="true" signature="1981:2101" placeholder="..." />
-                <marker date="1449259876513" expanded="true" signature="2672:2813" placeholder="..." />
-                <marker date="1449259876513" expanded="true" signature="13308:13370" placeholder="INSERT INTO ..." />
-                <marker date="1449259876513" expanded="true" signature="14064:14102" placeholder="SELECT * FRO..comment..." />
-                <marker date="1449259876513" expanded="true" signature="14542:14606" placeholder="..." />
-                <marker date="1449259876513" expanded="true" signature="14673:14779" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controller_profil.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depotdimages.com/Controller/controller_profil.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.269231" vertical-offset="22" max-vertical-offset="1003">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loginManager.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depotdimages.com/BD/loginManager.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="561">
-              <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controller_login.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depotdimages.com/Controller/controller_login.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1122">
-              <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="833">
-              <caret line="21" column="17" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="17" />
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="833">
+              <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -118,29 +43,33 @@
       <file leaf-file-name="gestimage.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/gestimage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="748">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="765">
+              <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+              <folding>
+                <marker date="1449262585451" expanded="true" signature="1004:1385" placeholder="..." />
+                <marker date="1449262585451" expanded="true" signature="1020:1373" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="depotimages.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depotdimages.com/BD/depotimages.sql">
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/depotdimages.com/Controller/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1394">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/admin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="816">
-              <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-              <folding />
+            <state vertical-scroll-proportion="0.6196868" vertical-offset="5039" max-vertical-offset="7633">
+              <caret line="329" column="23" selection-start-line="329" selection-start-column="23" selection-end-line="329" selection-end-column="23" />
+              <folding>
+                <marker date="1449268065970" expanded="true" signature="1814:1932" placeholder="..." />
+                <marker date="1449268065970" expanded="true" signature="1858:1932" placeholder="..." />
+                <marker date="1449268065970" expanded="true" signature="1898:1932" placeholder="..." />
+                <marker date="1449268065970" expanded="true" signature="2052:2254" placeholder="..." />
+                <marker date="1449268065970" expanded="true" signature="2078:2254" placeholder="..." />
+                <marker date="1449268065970" expanded="true" signature="2092:2240" placeholder="..." />
+                <marker date="1449268065970" expanded="true" signature="2105:2225" placeholder="..." />
+                <marker date="1449268065970" expanded="true" signature="2796:2937" placeholder="..." />
+                <marker date="1449268065970" expanded="true" signature="12589:12653" placeholder="..." />
+                <marker date="1449268065970" expanded="true" signature="12720:12826" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,6 +95,7 @@
         <option value="$PROJECT_DIR$/depotdimages.com/Controller/controller_profil.php" />
         <option value="$PROJECT_DIR$/depotdimages.com/BD/pictures.txt" />
         <option value="$PROJECT_DIR$/depotdimages.com/BD/loginManager.txt" />
+        <option value="$PROJECT_DIR$/depotdimages.com/Views/gestimage.php" />
         <option value="$PROJECT_DIR$/depotdimages.com/Controller/functions.php" />
       </list>
     </option>
@@ -406,7 +336,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -496,18 +426,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1139" max-vertical-offset="7956">
           <caret line="67" column="18" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
           <folding>
-            <marker date="1449259876513" expanded="true" signature="1690:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1734:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1774:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1928:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1954:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1968:2116" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1981:2101" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="2672:2813" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="13308:13370" placeholder="INSERT INTO ..." />
-            <marker date="1449259876513" expanded="true" signature="14064:14102" placeholder="SELECT * FRO..comment..." />
-            <marker date="1449259876513" expanded="true" signature="14542:14606" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="14673:14779" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1814:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1858:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1898:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2052:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2078:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2092:2240" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2105:2225" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2796:2937" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12589:12653" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12720:12826" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -612,18 +540,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="644" max-vertical-offset="5406">
           <caret line="274" column="9" selection-start-line="274" selection-start-column="9" selection-end-line="274" selection-end-column="26" />
           <folding>
-            <marker date="1449259876513" expanded="true" signature="1690:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1734:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1774:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1928:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1954:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1968:2116" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1981:2101" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="2672:2813" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="13308:13370" placeholder="INSERT INTO ..." />
-            <marker date="1449259876513" expanded="true" signature="14064:14102" placeholder="SELECT * FRO..comment..." />
-            <marker date="1449259876513" expanded="true" signature="14542:14606" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="14673:14779" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1814:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1858:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1898:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2052:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2078:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2092:2240" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2105:2225" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2796:2937" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12589:12653" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12720:12826" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -632,6 +558,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="686" max-vertical-offset="4301">
           <caret line="58" column="14" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -680,18 +607,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1394" max-vertical-offset="4335">
           <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
-            <marker date="1449259876513" expanded="true" signature="1690:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1734:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1774:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1928:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1954:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1968:2116" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1981:2101" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="2672:2813" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="13308:13370" placeholder="INSERT INTO ..." />
-            <marker date="1449259876513" expanded="true" signature="14064:14102" placeholder="SELECT * FRO..comment..." />
-            <marker date="1449259876513" expanded="true" signature="14542:14606" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="14673:14779" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1814:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1858:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1898:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2052:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2078:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2092:2240" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2105:2225" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2796:2937" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12589:12653" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12720:12826" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -741,18 +666,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="2057">
           <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
           <folding>
-            <marker date="1449259876513" expanded="true" signature="1690:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1734:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1774:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1928:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1954:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1968:2116" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1981:2101" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="2672:2813" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="13308:13370" placeholder="INSERT INTO ..." />
-            <marker date="1449259876513" expanded="true" signature="14064:14102" placeholder="SELECT * FRO..comment..." />
-            <marker date="1449259876513" expanded="true" signature="14542:14606" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="14673:14779" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1814:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1858:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1898:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2052:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2078:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2092:2240" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2105:2225" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2796:2937" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12589:12653" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12720:12826" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -785,18 +708,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1513">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1449259876513" expanded="true" signature="1690:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1734:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1774:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1928:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1954:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1968:2116" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1981:2101" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="2672:2813" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="13308:13370" placeholder="INSERT INTO ..." />
-            <marker date="1449259876513" expanded="true" signature="14064:14102" placeholder="SELECT * FRO..comment..." />
-            <marker date="1449259876513" expanded="true" signature="14542:14606" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="14673:14779" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1814:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1858:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1898:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2052:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2078:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2092:2240" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2105:2225" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2796:2937" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12589:12653" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12720:12826" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -813,6 +734,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="754" max-vertical-offset="4369">
           <caret line="62" column="14" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -828,34 +750,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="748">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/depotdimages.com/Controller/controller_login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1122">
-          <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="816">
+        <state vertical-scroll-proportion="0.6275168" vertical-offset="0" max-vertical-offset="894">
           <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/profil.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.576923" vertical-offset="24" max-vertical-offset="918">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -868,55 +766,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/gestimage.php">
+    <entry file="file://$PROJECT_DIR$/depotdimages.com/Controller/controller_login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="920">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="833">
-          <caret line="21" column="17" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.16331096" vertical-offset="228" max-vertical-offset="1122">
+          <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/depotdimages.com/BD/loginManager.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="561">
-          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.29565218" vertical-offset="0" max-vertical-offset="920">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/depotdimages.com/Controller/controller_profil.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.269231" vertical-offset="22" max-vertical-offset="1003">
+        <state vertical-scroll-proportion="0.29865772" vertical-offset="22" max-vertical-offset="1003">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/profil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22035794" vertical-offset="24" max-vertical-offset="918">
+          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11577752" vertical-offset="0" max-vertical-offset="881">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="833">
+          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depotdimages.com/Views/gestimage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="765">
+          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+          <folding>
+            <marker date="1449262585451" expanded="true" signature="1004:1385" placeholder="..." />
+            <marker date="1449262585451" expanded="true" signature="1020:1373" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/depotdimages.com/Controller/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15437004" vertical-offset="5848" max-vertical-offset="8381">
-          <caret line="352" column="10" selection-start-line="352" selection-start-column="10" selection-end-line="352" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.6196868" vertical-offset="5039" max-vertical-offset="7633">
+          <caret line="329" column="23" selection-start-line="329" selection-start-column="23" selection-end-line="329" selection-end-column="23" />
           <folding>
-            <marker date="1449259876513" expanded="true" signature="1690:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1734:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1774:1808" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1928:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1954:2130" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1968:2116" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="1981:2101" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="2672:2813" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="13308:13370" placeholder="INSERT INTO ..." />
-            <marker date="1449259876513" expanded="true" signature="14064:14102" placeholder="SELECT * FRO..comment..." />
-            <marker date="1449259876513" expanded="true" signature="14542:14606" placeholder="..." />
-            <marker date="1449259876513" expanded="true" signature="14673:14779" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1814:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1858:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="1898:1932" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2052:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2078:2254" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2092:2240" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2105:2225" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="2796:2937" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12589:12653" placeholder="..." />
+            <marker date="1449268065970" expanded="true" signature="12720:12826" placeholder="..." />
           </folding>
         </state>
       </provider>

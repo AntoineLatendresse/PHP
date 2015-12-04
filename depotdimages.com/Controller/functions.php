@@ -20,6 +20,14 @@ function dbConnect()
     }
 }
 
+function getSessionVar()
+{
+    if (isset($_GET['image']))
+    {
+        $_SESSION['imageSelect'] = $_GET['image'];
+    }
+}
+
 // Function to get the client ip address
 function get_client_ip_env() {
     $ipaddress = '';
@@ -311,10 +319,12 @@ function getImages()
 
     /** generate photo gallery **/
     $image_files = get_files($images_dir);
-    if(count($image_files)) {
+    if(count($image_files))
+    {
         foreach($image_files as $index=>$file)
         {
-            ksort($image_files);
+            $files[$file] = filemtime("../images/$file");
+            arsort($files);
             $index++;
             $thumbnail_image = $thumbs_dir.$file;
             if(!file_exists($thumbnail_image))
@@ -325,8 +335,8 @@ function getImages()
                     make_thumb($images_dir.$file,$thumbnail_image,$thumbs_width);
                 }
             }
-            echo '<a href="gestimage.php?',$images_dir.$file,'" name="imageClick" class="photo-link smoothbox" rel="gallery"><img src="',$thumbnail_image,'" /></a>';
-            if($index % $images_per_row == 0) { echo '<div class="clear"></div>'; }
+                echo '<a href="gestimage.php?image=../images/',$file,'" name="imageClick" type="submit" class="photo-link smoothbox"><img src="',$thumbnail_image,'" /></a>';
+                if($index % $images_per_row == 0) { echo '<div class="clear"></div>'; }
         }
         echo '<div class="clear"></div>';
     }
@@ -336,13 +346,6 @@ function getImages()
     }
 }
 //****DisplayImage*****************************************************************************************************/
-
-//****DisplayGestionnaireImage*****************************************************************************************/
-function getGestImages($image)
-{
-    echo "<img src='../images/".$image['image']."' />";
-}
-//****DisplayGestionnaireImage*****************************************************************************************/
 
 //****UploadImage******************************************************************************************************/
 function upload_Image()
@@ -419,53 +422,6 @@ function delete_Image()
     }
 }
 //****DeleteImage******************************************************************************************************/
-
-//****bdCommentaire()**************************************************************************************************/
-function bdCommentaire()
-{
-    mysql_connect("mysql host name","mysql user name","mysql password");
-    mysql_select_db("database name");
-    $name=$_POST['name'];
-    $comment=$_POST['comment'];
-    $submit=$_POST['submit'];
-
-    $dbLink = mysql_connect("mysql host name", "mysql user name", "mysql password");
-    mysql_query("SET character_set_client=utf8", $dbLink);
-    mysql_query("SET character_set_connection=utf8", $dbLink);
-
-    if($submit)
-    {
-        if($name&&$comment)
-        {
-            $insert=mysql_query("INSERT INTO comment (name,comment) VALUES ('$name','$comment') ");
-            echo "<meta HTTP-EQUIV='REFRESH' content='0; url=commentindex.php'>";
-        }
-        else
-        {
-            echo "please fill out all fields";
-        }
-    }
-}
-//****bdCommentaire()**************************************************************************************************/
-
-//****afficherbdCommantaire()******************************************************************************************/
-function afficherbdCommantaire()
-{
-    $dbLink = mysql_connect("mysql host name", "mysql username", "mysql password");
-    mysql_query("SET character_set_results=utf8", $dbLink);
-    mb_language('uni');
-    mb_internal_encoding('UTF-8');
-
-    $getquery=mysql_query("SELECT * FROM comment ORDER BY id DESC");
-    while($rows=mysql_fetch_assoc($getquery))
-    {
-        $id=$rows['id'];
-        $name=$rows['name'];
-        $comment=$rows['comment'];
-        echo $name . '<br/>' . '<br/>' . $comment . '<br/>' . '<br/>' . '<hr size="1"/>'
-        ;}
-}
-//****afficherbdCommantaire()******************************************************************************************/
 
 function showHeader($string)
 {

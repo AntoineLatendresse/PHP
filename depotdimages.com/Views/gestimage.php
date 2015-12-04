@@ -4,10 +4,12 @@ include_once("../Controller/functions.php");
  * Created by Latendresse Antoine && Yannick Delaire.
  * Date: 11/16/15
  */
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+getSessionVar();
 showHeader("Gestionnaire d'images");
 verifyConnected();
-bdCommentaire();
 ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
@@ -20,7 +22,7 @@ bdCommentaire();
     <div class="wrap">
         <h1>Your photos: </h1>
         <?php
-        getGestImages($_POST['imageClick']);
+        echo "<img style='max-height:600px; max-width: 800px; height:auto; width:auto; display:block;' src=" . $_SESSION['imageSelect'] . " >";
         ?>
     </div>
     <form action="gestimage.php" method="POST">
@@ -34,6 +36,5 @@ bdCommentaire();
     </body>
     </html>
 <?php
-afficherbdCommantaire();
 showFooter();
 ?>
