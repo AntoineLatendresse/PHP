@@ -26,6 +26,12 @@ if(isset($_POST["Username"]) && isset($_POST['NewPassword']) && isset($_POST['Ne
     $lastName =  $_POST['LastName'];
 }
 
+if(isset($_POST["stayConnected"]))
+{
+    setcookie("Connected24Heures", $_SESSION['connected'], time() + 86400 , "/");
+    header('Location: ../Views/index.php');
+}
+
 // On vérifie si des champs sont vides
 if (empty($_POST["Username"]))
 {

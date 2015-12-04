@@ -30,6 +30,9 @@ verifyConnected();
         <a href=""><input  name="delete" type="submit" value="Supprimer..." class="button" /></a>
     </form>
 </div>
+<div class="wrap">
+    <?php listPastUsers(); ?>
+</div>
 </body>
 </html>
 <?php

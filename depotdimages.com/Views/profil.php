@@ -28,7 +28,16 @@ verifyConnected();
         <input type="text" name="FirstName" title=""><br><br>
         <label>Nom :</label> <br> <br>
         <input type="text" name="LastName" title=""><br><br>
+        <?php
+        var_dump($_SESSION);
+        ?>
         <a href=""><input  type="submit" value="Modifier..." class="button" /></a>
+    </form>
+</div>
+<div class="wrap">
+    <form action="../Controller/controller_profil.php" method="post">
+        <label>Rester connecter pour 24 heures</label> <br> <br>
+        <a href=""><input  name="stayConnected" type="submit" value="Rester connecter..." class="button" /></a>
     </form>
 </div>
 </body>

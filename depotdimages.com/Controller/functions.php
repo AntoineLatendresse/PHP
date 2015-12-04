@@ -20,6 +20,98 @@ function dbConnect()
     }
 }
 
+// Function to get the client ip address
+function get_client_ip_env() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+        $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+
+    return $ipaddress;
+}
+
+function loginManager($Username,$Date,$Ip)
+{
+    $Fichier = "../BD/loginManager.txt";
+    $var = $Username.":".$Date."/".get_client_ip_env()."-";
+
+    if ($handle = fopen($Fichier, 'a')) {
+        fwrite($handle, $var . "\n");
+    }
+}
+
+function getStringBetween($str, $from, $to)
+{
+    $sub = substr($str, strpos($str, $from) + strlen($from), strlen($str));
+    return substr($sub, 0, strpos($sub, $to));
+}
+
+function listPastUsers()
+{
+    echo '
+<div class="row">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">';
+    $handleLog = fopen('../BD/loginManager.txt', 'r');
+    if($handleLog)
+    {
+        echo "
+    <div class='well'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Utilisateur</th>
+          <th>Date</th>
+          <th>Adresse IP</th>
+        </tr>
+      </thead>
+      <tbody>";
+        while (($lineLog = fgets($handleLog)) !== false) {
+            $Array[] = $lineLog;
+        }
+        if (!empty($Array)) {
+            $cpt = 1;
+            for ($i = count($Array) - 1; $i >= count($Array) - 10 ; $i--) {
+                if($i >= 0)
+                {
+                    $username= substr($Array[$i], 0, strpos($Array[$i], ':'));
+                    $date =  getStringBetween($Array[$i], ':', '/');
+                    $ipadress = getStringBetween($Array[$i], '/', '-');
+                    echo "
+            <tr>
+              <td>$cpt</td>
+              <td>$username</td>
+              <td>$date</td>
+              <td>$ipadress</td>
+            </tr>";
+                    $cpt++;
+                }
+            }
+        }
+        echo "</tbody>
+</table>
+</div>";
+    }
+    echo "        </div>
+            </div>
+        </div>
+    </div>
+</div>";
+}
+
 function menu()
 {
     if(isset($_SESSION['username']) && $_SESSION['username'] == 'Admin') {
@@ -200,6 +292,14 @@ function get_file_extension($file_name)
     return substr(strrchr($file_name,'.'),1);
 }
 
+function getPhotos()
+{
+    $query = dbConnect()->prepare("CALL SELECT_PHOTOS()");
+
+    $query->execute();
+    $query->CloseCursor();
+}
+
 //****DisplayImage*****************************************************************************************************/
 function getImages()
 {
@@ -247,21 +347,55 @@ function getGestImages($image)
 //****UploadImage******************************************************************************************************/
 function upload_Image()
 {
+   /* $target_dir = '../images';
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["filename"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+// Check file size
+    if ($_FILES["fileToUpload"]["size"] > 2097152) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+// Allow certain file formats
+    if($imageFileType != "gif" && $imageFileType != "jpg" && $imageFileType != "jpe" && $imageFileType != "jpeg")
+        && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+// Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
     $ext_type = array('gif','jpg','jpe','jpeg','png');
     $maxsize    = 2097152;
 
     if(isset($_POST['upload_img']))
     {
-        $file_name = $_FILES['image']['name'];
-        $file_type = $_FILES['image']['type'];
-        $file_size = $_FILES['image']['size'];
-        $file_tmp_name = $_FILES['image']['tmp_name'];
-
-        if(move_uploaded_file($file_tmp_name, "images/$file_name") && $file_type == $ext_type && $file_size < $maxsize)
-        {
-            echo 'Image is uploaded !';
-        }
-    }
+        $check
+    }*/
 }
 //****UploadImage******************************************************************************************************/
 
