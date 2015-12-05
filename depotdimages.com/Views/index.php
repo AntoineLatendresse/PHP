@@ -37,22 +37,24 @@ verifyConnected();
     </head>
     <body>
     <div class="wrap">
-        <h1>Your photos: </h1>
+        <h1>_Your's photos_</h1>
+        <hr><br/>
         <?php
         getImages();
         ?>
+        <br/><hr>
     </div>
     <div class="wrap">
-        <h1>Upload your photos: </h1>
+        <h1>Upload your's photos: </h1>
         <form action="<?php upload_Image();?>" method="post" enctype="multipart/form-data">
-            <input type="file" name="image"/>
+            <input class="inputText" type="file" name="image"/>
             <input class="button" type="submit" value="Upload Image" name="upload_img" />
         </form>
     </div>
     <div class="wrap">
         <form action="<?php delete_Image();?>" method="post">
-            <h1>Delete your photos: </h1>
-            <input type="text" name="filename" title=""/>
+            <h1>Delete your's photos: </h1>
+            <input class="inputText" type="text" name="filename" title=""/>
             <input class="button" type="submit" value="Delete Image" name="delete_img"/>
         </form>
     </div>

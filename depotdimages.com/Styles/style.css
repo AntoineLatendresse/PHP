@@ -98,10 +98,15 @@ h1 {
     clear:both;
 }
 .photo-link	{
-    padding:5px; margin:5px; border:1px solid #ccc; display:block; width:200px; float:left;
+    padding: 13px 13px 13px 13px;
+    margin:5px;
+    border:3px solid #FFFFFF;
+    display:block;
+    width:200px;
+    float:left;
 }
 .photo-link:hover {
-    border-color:#999;
+    border: 3px solid #212121;
 }
 
 /*Menu CSS*/

@@ -37,12 +37,14 @@ verifyConnected();
 </head>
 <body>
 <div class="wrap">
+    <h1>_Your's Profil_</h1>
+    <hr><br/>
     <form action="../Controller/controller_profil.php" method="post">
-        <input type="text" name="Username" title="" placeholder="Username">
-        <input type="text" name="NewPassword" title="" placeholder="New Password">
-        <input type="text" name="NewPasswordConfirm" title="" placeholder="New Password Confirm">
-        <input type="text" name="FirstName" title="" placeholder="First Name">
-        <input type="text" name="LastName" title="" placeholder="Last Name">
+        <input class="inputText" type="text" name="Username" title="" placeholder="Username">
+        <input class="inputText" type="text" name="NewPassword" title="" placeholder="New Password">
+        <input class="inputText" type="text" name="NewPasswordConfirm" title="" placeholder="New Password Confirm">
+        <input class="inputText" type="text" name="FirstName" title="" placeholder="First Name">
+        <input class="inputText" type="text" name="LastName" title="" placeholder="Last Name">
         <a href=""><input  type="submit" value="Modifier" class="button" /></a>
     </form>
 </div>
