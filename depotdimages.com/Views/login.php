@@ -38,12 +38,13 @@ showHeader("Identifiant Depot d'images");
     <div class="wrap">
         <br>
         <form action="../Controller/controller_login.php" method="post">
+            <h4><?php if(isset($_SESSION['connection_info'])) echo "<a>", $_SESSION['connection_info'], "</a><hr style='border-top: 2px solid #75A3D1;;'><br>"; ?>
             <div>
-                <input class="inputText" value="<?php if (isset($_SESSION[ 'username' ])) echo htmlentities(trim($_SESSION[ 'username' ])); ?>"
+                <input required autofocus class="inputText" value="<?php if (isset($_SESSION[ 'username' ])) echo htmlentities(trim($_SESSION[ 'username' ])); ?>"
                        id="UserName" name="UserName" type="text" title="UserName" placeholder="Username"/>
             </div>
             <div>
-                <input class="inputText" id="Password" name="Password" type="password" title="Password" placeholder="Password"/>
+                <input required class="inputText" id="Password" name="Password" type="password" title="Password" placeholder="Password"/>
             </div>
             <div><input class="button" type="submit" value="Soumettre"/></div>
         </form>

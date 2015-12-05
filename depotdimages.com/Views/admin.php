@@ -40,10 +40,10 @@ verifyConnected();
     <h1>_Your's are a PowerUser_</h1>
     <hr><br/>
     <form action="../Controller/controller_create_delete.php" method="post">
-        <input class="inputText" type="text" name="Username" title="Username" placeholder="Username">
-        <input class="inputText" type="text" name="NewPassword" title="NewPassword" placeholder="New Password">
-        <input class="inputText" type="text" name="FirstName" title="FirstName" placeholder="First Name">
-        <input class="inputText" type="text" name="LastName" title="LastName" placeholder="Last Name">
+        <input class="inputText" type="text" name="Username" id="UserPro" title="Username" placeholder="Username">
+        <input class="inputText" type="text" name="NewPassword" id="UserProfil" title="NewPassword" placeholder="New Password">
+        <input class="inputText" type="text" name="FirstName" id="UserProfil" title="FirstName" placeholder="First Name">
+        <input class="inputText" type="text" name="LastName" id="UserProfil" title="LastName" placeholder="Last Name">
         <a href=""><input name="create" type="submit" value="Creer" class="button" /></a>
         <br/>
         <br/><hr>

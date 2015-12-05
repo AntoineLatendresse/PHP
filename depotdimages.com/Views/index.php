@@ -48,13 +48,13 @@ verifyConnected();
         <h1>Upload your's photos: </h1>
         <form action="<?php upload_Image();?>" method="post" enctype="multipart/form-data">
             <input class="inputText" type="file" name="image"/>
-            <input class="button" type="submit" value="Upload Image" name="upload_img" />
+            <input class="button" type="submit" value="Upload Image" name="upload_img"/>
         </form>
     </div>
     <div class="wrap">
         <form action="<?php delete_Image();?>" method="post">
             <h1>Delete your's photos: </h1>
-            <input class="inputText" type="text" name="filename" title=""/>
+            <input class="inputText" type="text" name="filename" id="UserProfil" title=""/>
             <input class="button" type="submit" value="Delete Image" name="delete_img"/>
         </form>
     </div>

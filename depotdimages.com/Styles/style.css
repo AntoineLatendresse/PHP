@@ -57,12 +57,14 @@ h1 {
     color:#FFD452;
     border:#FFD452 solid 3px;
 }
+#UserPro,
 #Username {
     background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
     background-size: 30px 30px;
     background-position: 11px 8px;
     background-repeat: no-repeat;
 }
+#UserProfil,
 #Password {
     background-image: url(http://rexkirby.com/kirbyandson/images/comment.svg);
     background-size: 30px 30px;

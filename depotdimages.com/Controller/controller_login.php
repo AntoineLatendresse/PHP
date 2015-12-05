@@ -28,10 +28,8 @@ if( isset( $_POST[ 'UserName' ] ) && isset( $_POST[ 'Password' ] ) && !empty($_P
     else
     {
         // Sinon on avertit l'utilisateur
-        $_SESSION[ 'connection_info' ] =  "Nom d'utilisateur et / ou mot de passe incorrect.\\nRéessayez.";
+        $_SESSION[ 'connection_info' ] =  "Le Nom d'utilisateur et/ou le mot de passe incorrect. Réessayez.";
         header('Location: ../Views/login.php');
-        $message = "Nom d'utilisateur et / ou mot de passe incorrect.\nRéessayez.";
-        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 else
@@ -42,7 +40,6 @@ else
 
 function verification( $username, $password )
 {
-
     // On va récupérer l'utilisateur précis
     $reponse = getUser($username);
 
@@ -50,14 +47,12 @@ function verification( $username, $password )
     if (($reponse[0][ "Pass_word" ] == $password) )
     {
         $connected = true;
-        // le nom et le prénom servent à assurer à l'utilisateur qu'il est connecté
-        // et connecté avec le bon compte
+        // le nom et le prénom servent à assurer à l'utilisateur qu'il est connecté  et connecté avec le bon compte
         $_SESSION['first_name'] = $reponse[0]['FirstName'];
         $_SESSION['last_name'] = $reponse[0]['LastName'];
 
     } else {
         $connected = false;
     }
-
     return $connected;
 }
