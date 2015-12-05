@@ -30,7 +30,6 @@ function getSessionVar()
 
 // Function to get the client ip address
 function get_client_ip_env() {
-    $ipaddress = '';
     if (getenv('HTTP_CLIENT_IP'))
         $ipaddress = getenv('HTTP_CLIENT_IP');
     else if(getenv('HTTP_X_FORWARDED_FOR'))
@@ -191,7 +190,7 @@ function verifyConnected()
 {
     if(empty($_SESSION['connected']))
     {
-        header('Location: http://' . $_SERVER['HTTP_HOST'] . '../Views/login.php');
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . 'depotdimages.com/Views/login.php');
         exit;
     }
     echo 'You will only see this if you are logged in.';
@@ -335,8 +334,8 @@ function getImages()
                     make_thumb($images_dir.$file,$thumbnail_image,$thumbs_width);
                 }
             }
-                echo '<a href="gestimage.php?image=../images/',$file,'" name="imageClick" type="submit" class="photo-link smoothbox"><img src="',$thumbnail_image,'" /></a>';
-                if($index % $images_per_row == 0) { echo '<div class="clear"></div>'; }
+            echo '<a href="gestimage.php?image=../images/',$file,'" name="imageClick" type="submit" class="photo-link smoothbox"><img src="',$thumbnail_image,'" /></a>';
+            if($index % $images_per_row == 0) { echo '<div class="clear"></div>'; }
         }
         echo '<div class="clear"></div>';
     }

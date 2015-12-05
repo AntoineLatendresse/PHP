@@ -4,7 +4,10 @@ include_once('functions.php');
  * Created by Latendresse Antoine && Yannick Delaire.
  * Date: 11/16/15
  */
-session_start();
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Si on a reçu les données d'un formulaire et qu'elles ne sont pas vident
 if( isset( $_POST[ 'UserName' ] ) && isset( $_POST[ 'Password' ] ) && !empty($_POST[ 'UserName' ] ) && !empty($_POST[ 'Password' ] ))
@@ -12,7 +15,6 @@ if( isset( $_POST[ 'UserName' ] ) && isset( $_POST[ 'Password' ] ) && !empty($_P
     // On les récupère
     $username = $_POST[ 'UserName' ];
     $password = $_POST[ 'Password' ];
-
 
     // On teste si les informations sont valides
     if( verification( $username, $password ) )

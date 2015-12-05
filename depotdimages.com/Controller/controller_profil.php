@@ -4,7 +4,9 @@ include_once("../Controller/functions.php");
  * Created by Latendresse Antoine && Yannick Delaire.
  * Date: 11/16/15
  */
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 //Variables pour gerer les erreur (si il y a un erreur je fais + 1)
 $i = 0;
