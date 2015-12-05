@@ -32,11 +32,6 @@ if( isset( $_POST[ 'UserName' ] ) && isset( $_POST[ 'Password' ] ) && !empty($_P
         header('Location: ../Views/login.php');
     }
 }
-else
-{
-    $_SESSION[ 'connection_info' ] =  "Un ou plusieurs champs sont vident.";
-    header('Location: ../Views/login.php');
-}
 
 function verification( $username, $password )
 {

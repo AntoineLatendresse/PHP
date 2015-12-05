@@ -10,20 +10,17 @@ define("GESTIM", "../Views/gestimage.php");
 
 function dbConnect()
 {
-    try
-    {
+    try {
         return new PDO('mysql:host=localhost;dbname=depotimages', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
-    catch (Exception $e)
-    {
+    catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
 }
 
 function getSessionVar()
 {
-    if (isset($_GET['image']))
-    {
+    if (isset($_GET['image'])) {
         $_SESSION['imageSelect'] = $_GET['image'];
     }
 }
@@ -44,15 +41,13 @@ function get_client_ip_env() {
         $ipaddress = getenv('REMOTE_ADDR');
     else
         $ipaddress = 'UNKNOWN';
-
     return $ipaddress;
 }
 
-function loginManager($Username,$Date,$Ip)
+function loginManager($Username,$Date)
 {
     $Fichier = "../BD/loginManager.txt";
     $var = $Username.":".$Date."/".get_client_ip_env()."-";
-
     if ($handle = fopen($Fichier, 'a')) {
         fwrite($handle, $var . "\n");
     }
@@ -121,77 +116,52 @@ function listPastUsers()
 
 function menu()
 {
-    if(isset($_SESSION['username']) && $_SESSION['username'] == 'Admin') {
-        ?>
-        <div id='cssmenu'>
-            <ul>
-                <?php if(!isset($_SESSION["connected"]) || $_SESSION[ "connected" ] == false)
-                {
-                    ?>
-                    <li class='active'><a href="../Views/login.php">Login</a></li>
-                    <?php
-                }
-                else
-                {
-                    ?>
-                    <li><a href="../Controller/controller_logout.php">Logout</a></li>
-                    <?php
-                }
+    ?>
+    <div id='cssmenu'>
+        <ul>
+            <?php if(!isset($_SESSION["connected"]) || $_SESSION[ "connected" ] == false)
+            {
                 ?>
-                <li><a href="../Views/index.php">Gallery</a></li>
-                <li><a href="../Views/profil.php">Profil</a></li>
+                <li class='active'><a href="../Views/login.php">Login</a></li>
+                <?php
+            }
+            else
+            {
+                ?>
+                <li><a href="../Controller/controller_logout.php">Logout</a></li>
+                <?php
+            }
+            ?>
+            <li><a href="../Views/index.php">Gallery</a></li>
+            <li><a href="../Views/profil.php">Profil</a></li>
+            <?php  if(isset($_SESSION['username']) && $_SESSION['username'] == 'Admin')
+            {
+                ?>
                 <li><a href="../Views/admin.php">Gestion</a></li>
-                <a> |||   Depot d'images   |||</a>
-                <?php if (isset($_SESSION['username'])) echo "<a> Welcome: ", $_SESSION['username'], "</a>"; ?>
-            </ul>
-        </div>
-        <?php
-    }
-    else{
-        ?>
-        <div id='cssmenu'>
-            <ul>
-                <?php if(!isset($_SESSION["connected"]) || $_SESSION[ "connected" ] == false)
-                {
-                    ?>
-                    <li class='active'><a href="../Views/login.php">Login</a></li>
-                    <?php
-                }
-                else
-                {
-                    ?>
-                    <li><a href="../Controller/controller_logout.php">Logout</a></li>
-                    <?php
-                }
-                ?>
-                <li><a href="../Views/index.php">Gallery</a></li>
-                <li><a href="../Views/profil.php">Profil</a></li>
-                <a> |||   Depot d'images   |||</a>
-                <?php if (isset($_SESSION['username'])) echo "<a> Welcome: ", $_SESSION['username'], "</a>"; ?>
-            </ul>
-        </div>
-        <?php
-    }
+                <?php
+            }
+            ?>
+            <a> |||   Depot d'images   |||</a>
+            <?php if (isset($_SESSION['username'])) echo "<a> Welcome: ", $_SESSION['username'], "</a>"; ?>
+        </ul>
+    </div>
+    <?php
 }
 
 function updateProfil($username, $newPassword, $firstName, $lastName)
 {
     $query = dbConnect()->prepare("CALL UPDATE_PROFIL(?,?,?,?)");
-
     $query->bindParam(1, $username, PDO::PARAM_STR);
     $query->bindParam(2, $newPassword, PDO::PARAM_STR);
     $query->bindParam(3, $firstName, PDO::PARAM_STR);
     $query->bindParam(4, $lastName, PDO::PARAM_STR);
-
     $query->execute();
-
     $query->closeCursor();
 }
 
 function verifyConnected()
 {
-    if(empty($_SESSION['connected']))
-    {
+    if(empty($_SESSION['connected'])) {
         header('Location: http://' . $_SERVER['HTTP_HOST'] . 'depotdimages.com/Views/login.php');
         exit;
     }
@@ -200,40 +170,30 @@ function verifyConnected()
 function getUser($username)
 {
     $query = dbConnect()->prepare("CALL SELECT_USER(?)");
-
     $query->bindParam(1, $username, PDO::PARAM_STR);
-
     $query->execute();
     $result = $query->fetchAll();
-
     $query->closeCursor();
-
     return $result;
 }
 
 function getPassword($username)
 {
     $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");
-
     $query->bindParam(1, $username, PDO::PARAM_STR);
-
     $query->execute();
     $result = $query->fetchAll();
-
     $query->closeCursor();
-
     return $result[0][ "Pass_word" ];
 }
 
 function createUser($username, $password, $firstName, $lastName)
 {
     $query = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?)");
-
     $query->bindParam(1, $username, PDO::PARAM_STR);
     $query->bindParam(2, $password, PDO::PARAM_STR);
     $query->bindParam(3, $firstName, PDO::PARAM_STR);
     $query->bindParam(4, $lastName, PDO::PARAM_STR);
-
     $query->execute();
     $query->CloseCursor();
 }
@@ -241,26 +201,15 @@ function createUser($username, $password, $firstName, $lastName)
 function deleteUser($username, $password, $firstName, $lastName)
 {
     $query = dbConnect()->prepare("CALL DELETE_USER(?,?,?,?)");
-
     $query->bindParam(1, $username, PDO::PARAM_STR);
     $query->bindParam(2, $password, PDO::PARAM_STR);
     $query->bindParam(3, $firstName, PDO::PARAM_STR);
     $query->bindParam(4, $lastName, PDO::PARAM_STR);
-
     $query->execute();
     $query->CloseCursor();
 }
 
-function slow_equals($a, $b)
-{
-    $diff = strlen($a) ^ strlen($b);
-    for($i = 0; $i < strlen($a) && $i < strlen($b); $i++)
-    {
-        $diff |= ord($a[$i]) ^ ord($b[$i]);
-    }
-    return $diff === 0;
-}
-
+//****Thumbnail********************************************************************************************************/
 function make_thumb($src,$dest,$desired_width)
 {
     /* read the source image */
@@ -280,13 +229,10 @@ function make_thumb($src,$dest,$desired_width)
 function get_files($images_dir,$exts = array('jpg'))
 {
     $files = array();
-    if($handle = opendir($images_dir))
-    {
-        while(false !== ($file = readdir($handle)))
-        {
+    if($handle = opendir($images_dir)) {
+        while(false !== ($file = readdir($handle))) {
             $extension = strtolower(get_file_extension($file));
-            if($extension && in_array($extension,$exts))
-            {
+            if($extension && in_array($extension,$exts)) {
                 $files[] = $file;
             }
         }
@@ -299,14 +245,7 @@ function get_file_extension($file_name)
 {
     return substr(strrchr($file_name,'.'),1);
 }
-
-function getPhotos()
-{
-    $query = dbConnect()->prepare("CALL SELECT_PHOTOS()");
-
-    $query->execute();
-    $query->CloseCursor();
-}
+//****Thumbnail********************************************************************************************************/
 
 //****DisplayImage*****************************************************************************************************/
 function getImages()
@@ -319,19 +258,15 @@ function getImages()
 
     /** generate photo gallery **/
     $image_files = get_files($images_dir);
-    if(count($image_files))
-    {
-        foreach($image_files as $index=>$file)
-        {
+    if(count($image_files)) {
+        foreach($image_files as $index=>$file) {
             $files[$file] = filemtime("../images/$file");
             arsort($files);
             $index++;
             $thumbnail_image = $thumbs_dir.$file;
-            if(!file_exists($thumbnail_image))
-            {
+            if(!file_exists($thumbnail_image)) {
                 $extension = get_file_extension($thumbnail_image);
-                if($extension)
-                {
+                if($extension) {
                     make_thumb($images_dir.$file,$thumbnail_image,$thumbs_width);
                 }
             }
@@ -340,8 +275,7 @@ function getImages()
         }
         echo '<div class="clear"></div>';
     }
-    else
-    {
+    else {
         echo '<p>There are no images in this gallery.</p>';
     }
 }
@@ -351,57 +285,47 @@ function getImages()
 function upload_Image()
 {
     // Check if image file is a actual image or fake image
-    if(isset($_POST["upload_img"]))
-    {
+    if(isset($_POST["upload_img"])) {
         //$uploadOk = 1;
         $file_name = $_FILES['image']['name'];
         $file_type = pathinfo("../images/$file_name",PATHINFO_EXTENSION);
         $file_size = $_FILES['image']['size'];
         $file_tmp_name = $_FILES['image']['tmp_name'];
         $check = getimagesize($file_tmp_name);
-        if($check !== false)
-        {
+        if($check !== false) {
             echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
         }
-        else
-        {
+        else {
             echo "File is not an image.";
             $uploadOk = 0;
         }
         // Check if file already exists
-        if (file_exists("../images/$file_name"))
-        {
+        if (file_exists("../images/$file_name")) {
             echo "Sorry, file already exists.";
             $uploadOk = 0;
         }
         // Check file size
-        if ($file_size > 10485760)
-        {
+        if ($file_size > 10485760) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
         // Allow certain file formats
-        if($file_type != "gif" && $file_type != "jpg" && $file_type != "jpe" && $file_type != "jpeg" && $file_type != "gif")
-        {
+        if($file_type != "gif" && $file_type != "jpg" && $file_type != "jpe" && $file_type != "jpeg" && $file_type != "gif") {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk != 0)
-        {
-            if (move_uploaded_file($file_tmp_name, "../images/$file_name"))
-            {
+        if ($uploadOk != 0) {
+            if (move_uploaded_file($file_tmp_name, "../images/$file_name")) {
                 header("Refresh:0");
                 echo "The file " . $file_name . " has been uploaded.";
             }
-            else
-            {
+            else {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
-        else // if everything is ok, try to upload file
-        {
+        else{ // if everything is ok, try to upload file
             echo "Sorry, your file was not uploaded.";
         }
     }
@@ -411,11 +335,9 @@ function upload_Image()
 //****DeleteImage******************************************************************************************************/
 function delete_Image()
 {
-    if(isset($_POST['delete_img']))
-    {
+    if(isset($_POST['delete_img'])) {
         $img_file = $_POST['filename'];
-        if($img_file)
-        {
+        if($img_file) {
             unlink("images/$img_file");
             header("Refresh:0");
         }
@@ -423,6 +345,7 @@ function delete_Image()
 }
 //****DeleteImage******************************************************************************************************/
 
+//****ShowHeader*******************************************************************************************************/
 function showHeader($string)
 {
     menu();
@@ -441,4 +364,5 @@ function showFooter()
     </div>
     <?php
 }
+//****ShowHeader*******************************************************************************************************/
 ?>
