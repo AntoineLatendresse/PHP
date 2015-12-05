@@ -7,7 +7,7 @@ include_once("../Controller/functions.php");
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-showHeader("Identifiant DepotDimages");
+showHeader("Identifiant Depot d'images");
 ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">

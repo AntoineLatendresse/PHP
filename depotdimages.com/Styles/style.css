@@ -8,27 +8,27 @@
 }
 a {
     text-decoration: none;
-    color: #333;
+    color: #212121;
 }
 body {
     text-align:center;
-    background-color:#8BC34A;
+    background-color:#333333;
     font-family: 'Roboto', sans-serif;
     font-size:80%;
-    color:#666;
+    color:#727272;
 }
 .wrap {
-    background: #f3f8fb;
+    background: #CFD8DC;
     width:730px;
     margin:30px auto;
-    border: 4px dashed #8BC34A;
+    border: 0 groove #333333;
     border-radius:4px;
     padding: 20px 5px;
 }
 h1 {
     font-family: 'Roboto', sans-serif;
     font-size:170%;
-    color:#645348;
+    color: #212121;
     font-style:italic;
     text-decoration:none;
     font-weight:100;
@@ -36,12 +36,11 @@ h1 {
 }
 .button {
     font-family: 'Roboto', sans-serif;
-    float:left;
     width: 100%;
-    border: #fbfbfb solid 4px;
+    border: #FFD452 solid 0;
     cursor:pointer;
-    background-color: #3498db;
-    color:white;
+    background-color: #FFD452;
+    color:#B6B6B6;
     font-size:24px;
     padding-top:22px;
     padding-bottom:22px;
@@ -52,12 +51,11 @@ h1 {
     font-weight:700;
 }
 .button:hover {
-    background-color: rgba(0,0,0,0);
-    color: #0493bd;
+    color: #212121;
 }
 .focused {
-    color:#30aed6;
-    border:#30aed6 solid 3px;
+    color:#FFD452;
+    border:#FFD452 solid 3px;
 }
 #Username {
     background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
@@ -72,13 +70,13 @@ h1 {
     background-repeat: no-repeat;
 }
 .inputText {
-    color:#3c3c3c;
+    color: #FFFFFF;
     font-family: 'Roboto', sans-serif;
     font-weight:500;
     font-size: 18px;
     border-radius: 0;
     line-height: 22px;
-    background-color: #fbfbfb;
+    background-color: #E05151;
     padding: 13px 13px 13px 54px;
     margin-bottom: 10px;
     width:100%;
@@ -89,10 +87,10 @@ h1 {
     border: 3px solid rgba(0,0,0,0);
 }
 .inputText:focus {
-    background: #fff;
+    background: #E05151;
     box-shadow: 0;
-    border: 3px solid #3498db;
-    color: #3498db;
+    border: 3px solid #FFD452;
+    color: #FFFFFF;
     outline: none;
     padding: 13px 13px 13px 54px;
 }
@@ -137,18 +135,22 @@ h1 {
 }
 #cssmenu {
     width: auto;
-    border: 1px solid #98c571;
     font-family: 'Roboto', sans-serif;
     line-height: 1;
-    background: #bfdba7;
-    background: -webkit-linear-gradient(bottom, #4CAF50, #4CAF50);
-    background: -ms-linear-gradient(bottom, #4CAF50, #4CAF50);
-    background: -moz-linear-gradient(bottom, #4CAF50, #4CAF50);
-    background: -o-linear-gradient(bottom, #4CAF50, #4CAF50);
-    background: linear-gradient(to top, #4CAF50, #4CAF50);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), inset 0 -2px 0px #aacf8a, inset 0 1px 0 #4CAF50;
+    background: #E05151;
+    background: -webkit-linear-gradient(bottom, #E05151, #E05151);
+    background: -ms-linear-gradient(bottom, #E05151, #E05151);
+    background: -moz-linear-gradient(bottom, #E05151, #E05151);
+    background: -o-linear-gradient(bottom, #E05151, #E05151);
+    background: linear-gradient(to top, #E05151, #E05151);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), inset 0 -2px 0 #E05151, inset 0 1px 0 #E05151;
 }
 #cssmenu > ul > li {
+    float: left;
+}
+#cssmenu > ul > a {
+    padding: 20px 25px 21px 525px;
+    font-size: 19px;
     float: left;
 }
 #cssmenu.align-center > ul {
@@ -188,7 +190,7 @@ h1 {
 }
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li.active > a {
-    color: #000000;
+    color: #212121;
 }
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li > a:hover {
@@ -232,7 +234,7 @@ h1 {
 }
 #cssmenu.align-right > ul > li:before {
     right: auto;
-    left: 0px;
+    left: 0;
 }
 #cssmenu > ul > li:last-child:after,
 #cssmenu > ul > li:last-child:before {

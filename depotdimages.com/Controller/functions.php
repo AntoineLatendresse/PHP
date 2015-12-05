@@ -141,7 +141,8 @@ function menu()
                 <li><a href="../Views/index.php">Gallery</a></li>
                 <li><a href="../Views/profil.php">Profil</a></li>
                 <li><a href="../Views/admin.php">Gestion</a></li>
-                <li><?php if (isset($_SESSION['username'])) echo "Welcome:", $_SESSION['username']; ?></li>
+                <a> |||   Depot d'images   |||</a>
+                <?php if (isset($_SESSION['username'])) echo "<a> Welcome: ", $_SESSION['username'], "</a>"; ?>
             </ul>
         </div>
         <?php
@@ -165,7 +166,8 @@ function menu()
                 ?>
                 <li><a href="../Views/index.php">Gallery</a></li>
                 <li><a href="../Views/profil.php">Profil</a></li>
-                <li><?php if (isset($_SESSION['username'])) echo "Welcome:", $_SESSION['username']; ?></li>
+                <a> |||   Depot d'images   |||</a>
+                <?php if (isset($_SESSION['username'])) echo "<a> Welcome: ", $_SESSION['username'], "</a>"; ?>
             </ul>
         </div>
         <?php

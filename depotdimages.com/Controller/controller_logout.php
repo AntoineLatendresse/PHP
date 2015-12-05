@@ -6,10 +6,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-define("VIEW_INDEX", "../Views/index.php");
-
 $_SESSION = array();
 session_destroy();
 unset( $_SESSION );
-
-header('Location: ' . VIEW_INDEX);
+header("Location: ../Views/login.php");
