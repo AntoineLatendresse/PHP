@@ -19,7 +19,7 @@ body {
 }
 .wrap {
     background: #CFD8DC;
-    width:730px;
+    width:800px;
     margin:30px auto;
     border: 0 groove #333333;
     border-radius:4px;
@@ -100,7 +100,7 @@ h1 {
     clear:both;
 }
 .photo-link	{
-    padding: 13px 13px 13px 13px;
+    padding: 25px 25px 25px 25px;
     margin:5px;
     border:3px solid #FFFFFF;
     display:block;
@@ -109,6 +109,38 @@ h1 {
 }
 .photo-link:hover {
     border: 3px solid #212121;
+}
+.table{
+    width: 100%;
+    max-width: 600px;
+    height: 320px;
+    border-collapse: collapse;
+    margin: auto;
+    background: white;
+}
+th {
+    background: #E05151;
+    height: 54px;
+    width: 25%;
+    font-weight: lighter;
+    text-shadow: 0 1px 0 #E05151;
+    color: white;
+    box-shadow: inset 0 1px 2px #E05151;
+    transition: all 0.2s;
+}
+tr {
+    border-bottom: 1px solid #cccccc;
+}
+tr:last-child {
+    border-bottom: 0;
+}
+td {
+    border-right: 1px solid #cccccc;
+    padding: 10px;
+    transition: all 0.2s;
+}
+td:last-child {
+    border-right: 0;
 }
 
 /*Menu CSS*/

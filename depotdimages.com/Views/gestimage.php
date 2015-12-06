@@ -38,19 +38,24 @@ verifyConnected();
     </head>
     <body>
     <div class="wrap">
-        <h1>Your photos: </h1>
+        <h1>_Your's photo, but BIGGER_</h1>
+        <hr><br/>
         <?php
-        echo "<img style='max-height:600px; max-width: 800px; height:auto; width:auto; display:block;' src=" . $_SESSION['imageSelect'] . " >";
+        echo "<a><img style='max-height:600px; max-width: 800px;' src=". $_SESSION['imageSelect'] . "/></a>";
         ?>
+        <hr><br/>
     </div>
+    <div class="wrap">
     <form action="gestimage.php" method="POST">
+        <center>
         <table>
-            <tr><td>Name: <br><input type="text" name="name" title=""/></td></tr>
-            <tr><td colspan="2">Comment: </td></tr>
-            <tr><td colspan="5"><textarea name="comment" rows="10" cols="50" title=""></textarea></td></tr>
-            <tr><td colspan="2"><input type="submit" name="submit" value="Comment"></td></tr>
+            <tr><td><input class="inputText" placeholder="Name" id="Username" type="text" name="name" title=""/></td></tr>
+            <tr><td><textarea class="inputText" placeholder="Comment" id="Password" style=" resize: none;" name="comment" rows="10" cols="50" maxlength="150" title=""></textarea></td></tr>
+            <tr><td><input class="button" type="submit" name="submit" value="Comment"></td></tr>
         </table>
+        </center>
     </form>
+    </div>
     </body>
     </html>
 <?php

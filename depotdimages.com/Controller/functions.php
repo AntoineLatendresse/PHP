@@ -61,21 +61,15 @@ function getStringBetween($str, $from, $to)
 
 function listPastUsers()
 {
-    echo '
-<div class="row">
-    	<div class="col-md-4 col-md-offset-4">
-    		<div class="panel panel-default">
-			  	<div class="panel-heading">';
     $handleLog = fopen('../BD/loginManager.txt', 'r');
     if($handleLog)
     {
         echo "
-    <div class='well'>
     <table class='table'>
       <thead>
         <tr>
-          <th>#</th>
-          <th>Utilisateur</th>
+          <th>Numero</th>
+          <th>Username</th>
           <th>Date</th>
           <th>Adresse IP</th>
         </tr>
@@ -89,9 +83,9 @@ function listPastUsers()
             for ($i = count($Array) - 1; $i >= count($Array) - 10 ; $i--) {
                 if($i >= 0)
                 {
-                    $username= substr($Array[$i], 0, strpos($Array[$i], ':'));
-                    $date =  getStringBetween($Array[$i], ':', '/');
-                    $ipadress = getStringBetween($Array[$i], '/', '-');
+                    $username = substr($Array[$i], 0, strpos($Array[$i],':'));
+                    $date =  getStringBetween($Array[$i],'[',']');
+                    $ipadress = getStringBetween($Array[$i],']/','-');
                     echo "
             <tr>
               <td>$cpt</td>
@@ -104,14 +98,8 @@ function listPastUsers()
             }
         }
         echo "</tbody>
-</table>
-</div>";
+</table>";
     }
-    echo "        </div>
-            </div>
-        </div>
-    </div>
-</div>";
 }
 
 function menu()
@@ -255,13 +243,14 @@ function getImages()
     $thumbs_dir = '../thumbs/';
     $thumbs_width = 200;
     $images_per_row = 3;
+    $array = Sort_Directory_Files_By_Last_Modified($images_dir);
+    $info = $array[0];
+    $sort_type = $array[1];
 
     /** generate photo gallery **/
     $image_files = get_files($images_dir);
     if(count($image_files)) {
         foreach($image_files as $index=>$file) {
-            $files[$file] = filemtime("../images/$file");
-            arsort($files);
             $index++;
             $thumbnail_image = $thumbs_dir.$file;
             if(!file_exists($thumbnail_image)) {
@@ -270,16 +259,63 @@ function getImages()
                     make_thumb($images_dir.$file,$thumbnail_image,$thumbs_width);
                 }
             }
-            echo '<a href="gestimage.php?image=../images/',$file,'" name="imageClick" type="submit" class="photo-link smoothbox"><img src="',$thumbnail_image,'" /></a>';
-            if($index % $images_per_row == 0) { echo '<div class="clear"></div>'; }
         }
-        echo '<div class="clear"></div>';
     }
-    else {
-        echo '<p>There are no images in this gallery.</p>';
+    foreach($info as $key => $detail)
+    {
+        echo '<a href="gestimage.php?image=../images/',$detail['file'],'" name="imageClick" type="submit" class="photo-link smoothbox"><img src="',$thumbs_dir,$detail['file'],'" />
+                    <div class=\'text-center\'>
+                        <small><b style="max-lines: 1">',$detail['file'],'</b></small><br>
+                        <small>$User</small><br>
+                        <small>',$detail['date'],'</small><br>
+                        <small>$NbCommentaire</small>
+                     </div>
+                   </a>';
+        if($key % $images_per_row == 0) { echo '<div class="clear"></div>'; }
     }
 }
 //****DisplayImage*****************************************************************************************************/
+
+//****SortDirectory****************************************************************************************************/
+function Sort_Directory_Files_By_Last_Modified($dir, $sort_type = 'descending', $date_format = "F d Y H:i:s.")
+{
+    $files = scandir($dir);
+    $array = array();
+    foreach($files as $file) {
+        if($file != '.' && $file != '..') {
+            $now = time();
+            $last_modified = filemtime($dir.$file);
+            $time_passed_array = array();
+            $diff = $now - $last_modified;
+            $days = floor($diff / (3600 * 24));
+            if($days) {
+                $time_passed_array['days'] = $days;
+            }
+            $diff = $diff - ($days * 3600 * 24);
+            $hours = floor($diff / 3600);
+            if($hours) {
+                $time_passed_array['hours'] = $hours;
+            }
+            $diff = $diff - (3600 * $hours);
+            $minutes = floor($diff / 60);
+            if($minutes) {
+                $time_passed_array['minutes'] = $minutes;
+            }
+            $seconds = $diff - ($minutes * 60);
+            $time_passed_array['seconds'] = $seconds;
+            $array[] = array('file'         => $file,
+                'timestamp'    => $last_modified,
+                'date'         => date ($date_format, $last_modified),
+                'time_passed'  => $time_passed_array);
+        }
+    }
+    usort($array, create_function('$a, $b', 'return strcmp($a["timestamp"], $b["timestamp"]);'));
+    if($sort_type == 'descending') {
+        krsort($array);
+    }
+    return array($array, $sort_type);
+}
+//****SortDirectory****************************************************************************************************/
 
 //****UploadImage******************************************************************************************************/
 function upload_Image()
