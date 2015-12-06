@@ -51,13 +51,6 @@ verifyConnected();
             <input class="button" type="submit" value="Upload Image" name="upload_img"/>
         </form>
     </div>
-    <div class="wrap">
-        <form action="<?php delete_Image();?>" method="post">
-            <h1>Delete your's photos: </h1>
-            <input class="inputText" type="text" name="filename" id="UserProfil" title=""/>
-            <input class="button" type="submit" value="Delete Image" name="delete_img"/>
-        </form>
-    </div>
     </body>
     </html>
 <?php

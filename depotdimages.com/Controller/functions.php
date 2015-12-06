@@ -8,6 +8,73 @@ define("LOGIN", "../Controller/controller_login.php");
 define("PROFIL", "../Views/profil.php");
 define("GESTIM", "../Views/gestimage.php");
 
+//****GetSessionVar****************************************************************************************************/
+function getSessionVar()
+{
+    if (isset($_GET['image'])) {
+        $_SESSION['imageSelect'] = $_GET['image'];
+    }
+}
+//****GetSessionVar****************************************************************************************************/
+
+//****ShowHeader*******************************************************************************************************/
+function showHeader($string)
+{
+    menu();
+    ?>
+    <div class="wrap">
+        <h1 class="header-heading"><?=$string?></h1>
+    </div>
+    <?php
+}
+
+function showFooter()
+{
+    ?>
+    <div class="wrap">
+        <h1 class="header-heading"> Copyright © 2015 | depotdimages.com by AL&&YD Themes </h1>
+    </div>
+    <?php
+}
+//****ShowHeader*******************************************************************************************************/
+
+//****MENU*************************************************************************************************************/
+function menu()
+{
+    ?>
+    <div id='cssmenu'>
+        <ul>
+            <?php if(!isset($_SESSION["connected"]) || $_SESSION[ "connected" ] == false)
+            {
+                ?>
+                <li class='active'><a href="../Views/login.php">Login</a></li>
+                <?php
+            }
+            else
+            {
+                ?>
+                <li><a href="../Controller/controller_logout.php">Logout</a></li>
+                <?php
+            }
+            ?>
+            <li><a href="../Views/index.php">Gallery</a></li>
+            <li><a href="../Views/profil.php">Profil</a></li>
+            <?php  if(isset($_SESSION['username']) && $_SESSION['username'] == 'Admin')
+            {
+                ?>
+                <li><a href="../Views/admin.php">Gestion</a></li>
+                <?php
+            }
+            ?>
+            <a> |||   Depot d'images   |||</a>
+            <?php if (isset($_SESSION['username'])) echo "<a> Welcome: ", $_SESSION['username'], "</a>"; ?>
+        </ul>
+    </div>
+    <?php
+}
+//****MENU*************************************************************************************************************/
+
+//****BDCONNECT********************************************************************************************************/
 function dbConnect()
 {
     try {
@@ -17,14 +84,72 @@ function dbConnect()
         die('Erreur : ' . $e->getMessage());
     }
 }
+//****BDCONNECT********************************************************************************************************/
 
-function getSessionVar()
+//****BD***************************************************************************************************************/
+function updateProfil($username, $newPassword, $firstName, $lastName)
 {
-    if (isset($_GET['image'])) {
-        $_SESSION['imageSelect'] = $_GET['image'];
+    $query = dbConnect()->prepare("CALL UPDATE_PROFIL(?,?,?,?)");
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->bindParam(2, $newPassword, PDO::PARAM_STR);
+    $query->bindParam(3, $firstName, PDO::PARAM_STR);
+    $query->bindParam(4, $lastName, PDO::PARAM_STR);
+    $query->execute();
+    $query->closeCursor();
+}
+
+function verifyConnected()
+{
+    if(empty($_SESSION['connected'])) {
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . 'depotdimages.com/Views/login.php');
+        exit;
     }
 }
 
+function getUser($username)
+{
+    $query = dbConnect()->prepare("CALL SELECT_USER(?)");
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetchAll();
+    $query->closeCursor();
+    return $result;
+}
+
+function getPassword($username)
+{
+    $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetchAll();
+    $query->closeCursor();
+    return $result[0][ "Pass_word" ];
+}
+
+function createUser($username, $password, $firstName, $lastName)
+{
+    $query = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?)");
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->bindParam(2, $password, PDO::PARAM_STR);
+    $query->bindParam(3, $firstName, PDO::PARAM_STR);
+    $query->bindParam(4, $lastName, PDO::PARAM_STR);
+    $query->execute();
+    $query->CloseCursor();
+}
+
+function deleteUser($username, $password, $firstName, $lastName)
+{
+    $query = dbConnect()->prepare("CALL DELETE_USER(?,?,?,?)");
+    $query->bindParam(1, $username, PDO::PARAM_STR);
+    $query->bindParam(2, $password, PDO::PARAM_STR);
+    $query->bindParam(3, $firstName, PDO::PARAM_STR);
+    $query->bindParam(4, $lastName, PDO::PARAM_STR);
+    $query->execute();
+    $query->CloseCursor();
+}
+//****BD***************************************************************************************************************/
+
+//****LoginManager*****************************************************************************************************/
 // Function to get the client ip address
 function get_client_ip_env() {
     if (getenv('HTTP_CLIENT_IP'))
@@ -101,101 +226,7 @@ function listPastUsers()
 </table>";
     }
 }
-
-function menu()
-{
-    ?>
-    <div id='cssmenu'>
-        <ul>
-            <?php if(!isset($_SESSION["connected"]) || $_SESSION[ "connected" ] == false)
-            {
-                ?>
-                <li class='active'><a href="../Views/login.php">Login</a></li>
-                <?php
-            }
-            else
-            {
-                ?>
-                <li><a href="../Controller/controller_logout.php">Logout</a></li>
-                <?php
-            }
-            ?>
-            <li><a href="../Views/index.php">Gallery</a></li>
-            <li><a href="../Views/profil.php">Profil</a></li>
-            <?php  if(isset($_SESSION['username']) && $_SESSION['username'] == 'Admin')
-            {
-                ?>
-                <li><a href="../Views/admin.php">Gestion</a></li>
-                <?php
-            }
-            ?>
-            <a> |||   Depot d'images   |||</a>
-            <?php if (isset($_SESSION['username'])) echo "<a> Welcome: ", $_SESSION['username'], "</a>"; ?>
-        </ul>
-    </div>
-    <?php
-}
-
-function updateProfil($username, $newPassword, $firstName, $lastName)
-{
-    $query = dbConnect()->prepare("CALL UPDATE_PROFIL(?,?,?,?)");
-    $query->bindParam(1, $username, PDO::PARAM_STR);
-    $query->bindParam(2, $newPassword, PDO::PARAM_STR);
-    $query->bindParam(3, $firstName, PDO::PARAM_STR);
-    $query->bindParam(4, $lastName, PDO::PARAM_STR);
-    $query->execute();
-    $query->closeCursor();
-}
-
-function verifyConnected()
-{
-    if(empty($_SESSION['connected'])) {
-        header('Location: http://' . $_SERVER['HTTP_HOST'] . 'depotdimages.com/Views/login.php');
-        exit;
-    }
-}
-
-function getUser($username)
-{
-    $query = dbConnect()->prepare("CALL SELECT_USER(?)");
-    $query->bindParam(1, $username, PDO::PARAM_STR);
-    $query->execute();
-    $result = $query->fetchAll();
-    $query->closeCursor();
-    return $result;
-}
-
-function getPassword($username)
-{
-    $query = dbConnect()->prepare("CALL SELECT_PASSWORD(?)");
-    $query->bindParam(1, $username, PDO::PARAM_STR);
-    $query->execute();
-    $result = $query->fetchAll();
-    $query->closeCursor();
-    return $result[0][ "Pass_word" ];
-}
-
-function createUser($username, $password, $firstName, $lastName)
-{
-    $query = dbConnect()->prepare("CALL INSERT_USER(?,?,?,?)");
-    $query->bindParam(1, $username, PDO::PARAM_STR);
-    $query->bindParam(2, $password, PDO::PARAM_STR);
-    $query->bindParam(3, $firstName, PDO::PARAM_STR);
-    $query->bindParam(4, $lastName, PDO::PARAM_STR);
-    $query->execute();
-    $query->CloseCursor();
-}
-
-function deleteUser($username, $password, $firstName, $lastName)
-{
-    $query = dbConnect()->prepare("CALL DELETE_USER(?,?,?,?)");
-    $query->bindParam(1, $username, PDO::PARAM_STR);
-    $query->bindParam(2, $password, PDO::PARAM_STR);
-    $query->bindParam(3, $firstName, PDO::PARAM_STR);
-    $query->bindParam(4, $lastName, PDO::PARAM_STR);
-    $query->execute();
-    $query->CloseCursor();
-}
+//****LoginManager*****************************************************************************************************/
 
 //****Thumbnail********************************************************************************************************/
 function make_thumb($src,$dest,$desired_width)
@@ -245,13 +276,11 @@ function getImages()
     $images_per_row = 3;
     $array = Sort_Directory_Files_By_Last_Modified($images_dir);
     $info = $array[0];
-    $sort_type = $array[1];
 
     /** generate photo gallery **/
     $image_files = get_files($images_dir);
     if(count($image_files)) {
         foreach($image_files as $index=>$file) {
-            $index++;
             $thumbnail_image = $thumbs_dir.$file;
             if(!file_exists($thumbnail_image)) {
                 $extension = get_file_extension($thumbnail_image);
@@ -368,37 +397,89 @@ function upload_Image()
 }
 //****UploadImage******************************************************************************************************/
 
-//****DeleteImage******************************************************************************************************/
-function delete_Image()
-{
-    if(isset($_POST['delete_img'])) {
-        $img_file = $_POST['filename'];
-        if($img_file) {
-            unlink("images/$img_file");
-            header("Refresh:0");
+if (isset($_POST['SupprimerImage'])) {
+    unlink($_POST['ImageSupp']);
+    $Fichier = "photoManager.txt";
+    $substring = substr($_SESSION['ImageCommentaire'], strpos($_SESSION['ImageCommentaire'], '/'), sizeof($_SESSION['ImageCommentaire']) - 6);
+    if ($PHOTO = file_get_contents($Fichier)) {
+        $PHOTO = str_replace($substring, "", $PHOTO);
+
+        file_put_contents($Fichier, $PHOTO);
+    }
+    header('Location: ../Views/index.php');
+}
+
+if (isset($_POST['EnvoyerCommentaire'])) {
+    if ($_POST['LeCommentaire'] != "") {
+        if ($Handle = fopen($Fichier, 'a')) {
+            fwrite($Handle, "*" . $_SESSION['LoggedIn'] . "_" . $_POST['LeCommentaire'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['ImageCommentaire'] . "\n");
         }
     }
 }
-//****DeleteImage******************************************************************************************************/
 
-//****ShowHeader*******************************************************************************************************/
-function showHeader($string)
-{
-    menu();
-    ?>
-    <div class="wrap">
-        <h1 class="header-heading"><?=$string?></h1>
-    </div>
-    <?php
+if (isset($_GET['image'])) {
+    $_SESSION['ImageCommentaire'] = $_GET['image'];
+    //gestImageMain();
 }
 
-function showFooter()
+function getProprioImage()
 {
-    ?>
-    <div class="wrap">
-        <h1 class="header-heading"> Copyright © 2015 | depotdimages.com by AL&&YD Themes </h1>
-    </div>
-    <?php
+    $Array = array();
+    $ProprioImage = "rien-";
+    $Fichier = "Photo.txt";
+    if ($PHOTO = file_get_contents($Fichier)) {
+        $handle = fopen("Photo.txt", 'r');
+        if ($handle) {
+            while (($line = fgets($handle)) !== false) {
+                $Array[] = $line;
+            }
+            fclose($handle);
+        }
+    }
+    $Trouver = false;
+    for ($i = 0; $i < count($Array) && !$Trouver; $i++) {
+        if (!$Trouver && $_SESSION['LoggedIn'] == substr($Array[$i], 0, strpos($Array[$i], '/')) &&  $_SESSION['ImageCommentaire'] == "image/".getStringBetween($Array[$i], '_', '¯')) {
+            $ProprioImage = substr($Array[$i], 0, strpos($Array[$i], '/'));
+            $Trouver = true;
+        }
+    }
+
+    return $ProprioImage;
 }
-//****ShowHeader*******************************************************************************************************/
+
+
+
+function ProccessComment()
+{
+    $handle = fopen("Commentaire.txt", "r");
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            if (strpos($line, $_SESSION['ImageCommentaire']) !== false) {
+
+                $Array[] = getStringBetween($line, "*", "~");
+            }
+        }
+
+        fclose($handle);
+    }
+    if (!empty($Array)) {
+        for ($i = count($Array) - 1; $i >= 0; $i--) {
+            $user = substr($Array[$i], 0, strpos($Array[$i], '_'));
+            $comment = getStringBetween($Array[$i], "_", "/");
+            $date = getStringBetween($Array[$i], "/", "¯");
+
+            echo "
+                <hr data-brackets-id='12673'>
+                <ul data-brackets-id='12674' id='sortable' class='list-unstyled ui-sortable'>
+                    <strong class='pull-left primary-font'>$user</strong>
+                    <small class='pull-right text-muted'>
+                    <span class='glyphicon glyphicon-time'></span>$date</small>
+                    </br>
+                    <li class='ui-state-default'>$comment</li>
+                    </br>
+                </ul>
+            ";
+        }
+    }
+}
 ?>

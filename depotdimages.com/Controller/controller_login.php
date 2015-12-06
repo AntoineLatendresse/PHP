@@ -22,7 +22,7 @@ if( isset( $_POST[ 'UserName' ] ) && isset( $_POST[ 'Password' ] ) && !empty($_P
         $_SESSION[ 'connected' ] = true;
         $_SESSION[ 'username' ] = $username;
         $time = @date('[d/M/Y:H:i:s]');
-        loginManager($username,$time,$_SERVER['REMOTE_HOST']);
+        loginManager($username,$time);
         header('Location: ../Views/index.php');
     }
     else
