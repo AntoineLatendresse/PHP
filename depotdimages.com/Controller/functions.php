@@ -295,15 +295,57 @@ function getImages()
         echo '<a href="gestimage.php?image=../images/',$detail['file'],'" name="imageClick" type="submit" class="photo-link smoothbox"><img src="',$thumbs_dir,$detail['file'],'" />
                     <div class=\'text-center\'>
                         <small><b style="max-lines: 1">',$detail['file'],'</b></small><br>
-                        <small>$User</small><br>
+                        <small>',GetUsername($detail['file']),'</small><br>
                         <small>',$detail['date'],'</small><br>
-                        <small>$NbCommentaire</small>
+                        <small>',GetComment($detail['file']),'</small>
                      </div>
                    </a>';
         if($key % $images_per_row == 0) { echo '<div class="clear"></div>'; }
     }
 }
 //****DisplayImage*****************************************************************************************************/
+
+function GetUsername($Username) {
+    $handle = fopen("../BD/photoManager.txt", 'r');
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            $Array[] = $line;
+        }
+        fclose($handle);
+    }
+    if (!empty($Array)) {
+        for ($i = count($Array) - 1; $i >= 0; $i--) {
+            if ($Array[$i] != "") {
+                $line = $Array[$i];
+                $Username = substr($line, 0, strpos($line, '/'));
+            }
+        }
+    }
+    return $Username;
+}
+function GetComment($NbCommentaire){
+    $Fichier = "../BD/commentManager.txt";
+    $handle = fopen("../BD/commentManager.txt", 'r');
+    if($handle) {
+        while(($line = fgets($handle)) !== false) {
+            $Array[] = $line;
+        }
+        fclose($handle);
+    }
+    if(!empty($Array)) {
+        for ($i = count($Array) - 1; $i >= 0; $i--) {
+            if ($Array[$i] != "") {
+                $line = $Array[$i];
+                $Guid = getStringBetween($line, '_', '¯');
+                $NbCommentaire = 0;
+                if ($Commentaire = file_get_contents($Fichier)) {
+                    $NbCommentaire = substr_count($Commentaire, $Guid);
+                }
+            }
+        }
+    }
+    return $NbCommentaire;
+}
 
 //****SortDirectory****************************************************************************************************/
 function Sort_Directory_Files_By_Last_Modified($dir, $sort_type = 'descending', $date_format = "F d Y H:i:s.")
@@ -397,10 +439,54 @@ function upload_Image()
 }
 //****UploadImage******************************************************************************************************/
 
+//****EnvoyerComment***************************************************************************************************/
+if (isset($_POST['CommentaireEnvoyer'])) {
+    if ($_POST['Commentaire'] != "") {
+        if ($Handle = fopen($Fichier, 'a')) {
+            fwrite($Handle, "*" . $_SESSION['LoggedIn'] . "_" . $_POST['LeCommentaire'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['imageSelect'] . "\n");
+        }
+    }
+}
+//****EnvoyerComment***************************************************************************************************/
+
+//****CommentManager***************************************************************************************************/
+function CommentManager() //A Qui commentaire photo
+{
+    $handle = fopen("../BD/commentManager.txt", "r");
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            if (strpos($line, $_SESSION['imageSelect']) !== false) {
+                $Array[] = getStringBetween($line, "*", "~");
+            }
+        }
+        fclose($handle);
+    }
+    if (!empty($Array)) {
+        for ($i = count($Array) - 1; $i >= 0; $i--) {
+            $user = substr($Array[$i], 0, strpos($Array[$i], '_'));
+            $comment = getStringBetween($Array[$i], "_", "/");
+            $date = getStringBetween($Array[$i], "/", "¯");
+            echo "
+                <hr>
+                <ul class=\"inputText\">
+                    <strong>$user</strong>
+                    <small>
+                    <span></span>$date</small>
+                    </br>
+                    <li>$comment</li>
+                    </br>
+                </ul>
+            ";
+        }
+    }
+}
+//****CommentManager***************************************************************************************************/
+
+//****SupprimerImage***************************************************************************************************/
 if (isset($_POST['SupprimerImage'])) {
-    unlink($_POST['ImageSupp']);
+    unlink($_POST['Image']);
     $Fichier = "photoManager.txt";
-    $substring = substr($_SESSION['ImageCommentaire'], strpos($_SESSION['ImageCommentaire'], '/'), sizeof($_SESSION['ImageCommentaire']) - 6);
+    $substring = substr($_SESSION['imageSelect'], strpos($_SESSION['imageSelect'], '/'), sizeof($_SESSION['imageSelect']) - 6);
     if ($PHOTO = file_get_contents($Fichier)) {
         $PHOTO = str_replace($substring, "", $PHOTO);
 
@@ -408,27 +494,16 @@ if (isset($_POST['SupprimerImage'])) {
     }
     header('Location: ../Views/index.php');
 }
+//****SupprimerImage***************************************************************************************************/
 
-if (isset($_POST['EnvoyerCommentaire'])) {
-    if ($_POST['LeCommentaire'] != "") {
-        if ($Handle = fopen($Fichier, 'a')) {
-            fwrite($Handle, "*" . $_SESSION['LoggedIn'] . "_" . $_POST['LeCommentaire'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['ImageCommentaire'] . "\n");
-        }
-    }
-}
-
-if (isset($_GET['image'])) {
-    $_SESSION['ImageCommentaire'] = $_GET['image'];
-    //gestImageMain();
-}
-
-function getProprioImage()
+//****PhotoManager*****************************************************************************************************/
+function PhotoManager() //A Qui l'image
 {
     $Array = array();
-    $ProprioImage = "rien-";
-    $Fichier = "Photo.txt";
+    $Proprétaire = "rien-";
+    $Fichier = "../BD/photoManager.txt";
     if ($PHOTO = file_get_contents($Fichier)) {
-        $handle = fopen("Photo.txt", 'r');
+        $handle = fopen("../BD/photoManager.txt", 'r');
         if ($handle) {
             while (($line = fgets($handle)) !== false) {
                 $Array[] = $line;
@@ -438,48 +513,12 @@ function getProprioImage()
     }
     $Trouver = false;
     for ($i = 0; $i < count($Array) && !$Trouver; $i++) {
-        if (!$Trouver && $_SESSION['LoggedIn'] == substr($Array[$i], 0, strpos($Array[$i], '/')) &&  $_SESSION['ImageCommentaire'] == "image/".getStringBetween($Array[$i], '_', '¯')) {
-            $ProprioImage = substr($Array[$i], 0, strpos($Array[$i], '/'));
+        if (!$Trouver && $_SESSION['connected'] == substr($Array[$i], 0, strpos($Array[$i], '/')) &&  $_SESSION['imageSelect'] == "../images/".getStringBetween($Array[$i], '_', '¯')) {
+            $Proprétaire = substr($Array[$i], 0, strpos($Array[$i], '/'));
             $Trouver = true;
         }
     }
-
-    return $ProprioImage;
+    return $Proprétaire;
 }
-
-
-
-function ProccessComment()
-{
-    $handle = fopen("Commentaire.txt", "r");
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            if (strpos($line, $_SESSION['ImageCommentaire']) !== false) {
-
-                $Array[] = getStringBetween($line, "*", "~");
-            }
-        }
-
-        fclose($handle);
-    }
-    if (!empty($Array)) {
-        for ($i = count($Array) - 1; $i >= 0; $i--) {
-            $user = substr($Array[$i], 0, strpos($Array[$i], '_'));
-            $comment = getStringBetween($Array[$i], "_", "/");
-            $date = getStringBetween($Array[$i], "/", "¯");
-
-            echo "
-                <hr data-brackets-id='12673'>
-                <ul data-brackets-id='12674' id='sortable' class='list-unstyled ui-sortable'>
-                    <strong class='pull-left primary-font'>$user</strong>
-                    <small class='pull-right text-muted'>
-                    <span class='glyphicon glyphicon-time'></span>$date</small>
-                    </br>
-                    <li class='ui-state-default'>$comment</li>
-                    </br>
-                </ul>
-            ";
-        }
-    }
-}
+//****PhotoManager*****************************************************************************************************/
 ?>

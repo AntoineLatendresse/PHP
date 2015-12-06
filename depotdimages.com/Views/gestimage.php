@@ -46,18 +46,28 @@ verifyConnected();
         <hr><br/>
     </div>
     <div class="wrap" align="center">
-    <form action="gestimage.php" method="POST">
+    <form action="../Controller/functions.php" method="post">
         <table>
             <tr><td><input class="inputText" placeholder="Name" id="Username" type="text" name="name" title=""/></td></tr>
             <tr><td><textarea class="inputText" placeholder="Comment" id="Password" style=" resize: none;" name="comment" rows="10" cols="50" maxlength="150" title=""></textarea></td></tr>
-            <tr><td><input class="button" type="submit" name="submit" value="Comment"></td></tr>
+            <tr><td><input class="button" type="submit" name="CommentaireEnvoyer" value="Comment"></td></tr>
         </table>
+        <br/><hr/><br/>
+        <?php
+        CommentManager();
+        ?>
     </form>
     </div>
     <div class="wrap">
         <form action="../Controller/functions.php" method="post">
-            <h1>Delete your's photos: </h1>
-            <input class="button" type="submit" value="Delete Image" name="SupprimerImage"/>
+            <?php if(PhotoManager() == $_SESSION['username'])
+            {
+                ?>
+                "<h1>Delete your's photos: </h1>
+                <input class="button" type="submit" value="Delete Image" name="SupprimerImage"/>"
+                <?php
+            }
+            ?>
         </form>
     </div>
     </body>
