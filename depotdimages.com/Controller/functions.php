@@ -444,8 +444,12 @@ if (isset($_POST['CommentaireEnvoyer'])) {
     $Fichier = "../BD/commentManager.txt";
     if ($_POST['comment'] != "") {
         if ($Handle = fopen($Fichier, 'a')) {
+            //devait faire session_start pour arranger les probleme de session, je trouve sa bizarre mais bref, sa marche la
             session_start();
+
             fwrite($Handle, "*" . $_SESSION['username'] . "_" . $_POST['comment'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['imageSelect'] . "\n");
+
+            //on ne peut pas jsute resfresh pour une raison obscur que je ne sais pas lol
             header('Location: ../Views/gestimage.php?image='. $_SESSION['imageSelect'] );
         }
     }
