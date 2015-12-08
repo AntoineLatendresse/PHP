@@ -441,9 +441,10 @@ function upload_Image()
 
 //****EnvoyerComment***************************************************************************************************/
 if (isset($_POST['CommentaireEnvoyer'])) {
-    if ($_POST['Commentaire'] != "") {
+    $Fichier = "../BD/commentManager.txt";
+    if ($_POST['comment'] != "") {
         if ($Handle = fopen($Fichier, 'a')) {
-            fwrite($Handle, "*" . $_SESSION['LoggedIn'] . "_" . $_POST['LeCommentaire'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['imageSelect'] . "\n");
+            fwrite($Handle, "*" . $_SESSION['LoggedIn'] . "_" . $_POST['comment'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['imageSelect'] . "\n");
         }
     }
 }
