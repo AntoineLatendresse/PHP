@@ -41,7 +41,7 @@ verifyConnected();
         <h1>_Your's photo, but BIGGER_</h1>
         <hr><br/>
         <?php
-        echo "<a><img style='max-height:600px; max-width: 800px;' src=". $_SESSION['imageSelect'] . "/></a>";
+        echo "<a><img style='max-height:600px; max-width: 800px;' src=".$_SESSION['imageSelect'] . "/></a>";
         ?>
         <hr><br/>
     </div>

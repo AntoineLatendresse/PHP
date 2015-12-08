@@ -444,7 +444,9 @@ if (isset($_POST['CommentaireEnvoyer'])) {
     $Fichier = "../BD/commentManager.txt";
     if ($_POST['comment'] != "") {
         if ($Handle = fopen($Fichier, 'a')) {
-            fwrite($Handle, "*" . $_SESSION['LoggedIn'] . "_" . $_POST['comment'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['imageSelect'] . "\n");
+            session_start();
+            fwrite($Handle, "*" . $_SESSION['username'] . "_" . $_POST['comment'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['imageSelect'] . "\n");
+            header('Location: ../Views/gestimage.php?image='. $_SESSION['imageSelect'] );
         }
     }
 }
