@@ -48,7 +48,6 @@ verifyConnected();
     <div class="wrap" align="center">
     <form action="../Controller/functions.php" method="post">
         <table>
-            <tr><td><input class="inputText" placeholder="Name" id="Username" type="text" name="name" title=""/></td></tr>
             <tr><td><textarea class="inputText" placeholder="Comment" id="Password" style=" resize: none;" name="comment" rows="10" cols="50" maxlength="150" title=""></textarea></td></tr>
             <tr><td><input class="button" type="submit" name="CommentaireEnvoyer" value="Comment"></td></tr>
         </table>
