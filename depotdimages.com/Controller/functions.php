@@ -296,10 +296,10 @@ function getImages()
         $out = strlen($detail['file']) > 20 ? substr($detail['file'],0,20)."..." : $detail['file'];
         echo '<a href="gestimage.php?image=../images/',$detail['file'],'" name="imageClick" type="submit" class="photo-link smoothbox"><img src="',$thumbs_dir,$detail['file'],'" />
                     <div class=\'text-center\'>
-                        <small><b>',$out,'</b></small><br>
-                        <small>',GetUsername($detail['file']),'</small><br>
+                        <small><b style="font-size:18px ">',$out,'</b></small><br>
+                        <small>',$detail['file'],'</small><br>
                         <small>',$detail['date'],'</small><br>
-                        <small>',GetComment($detail['file']),'</small>
+                        <small>',$detail['file'],'</small>
                      </div>
                    </a>';
         if($result % 3 == 0)
@@ -318,55 +318,6 @@ function getImages()
     echo '<div class="clear"></div>';
 }
 //****DisplayImage*****************************************************************************************************/
-
-//****GetUsername******************************************************************************************************/
-function GetUsername($Username) {
-    $Fichier = "../BD/photoManager.txt";
-    $handle = fopen($Fichier, 'r');
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            $Array[] = $line;
-        }
-        fclose($handle);
-    }
-    if (!empty($Array)) {
-        for ($i = count($Array) - 1; $i >= 0; $i--) {
-            if ($Array[$i] != "") {
-                $line = $Array[$i];
-                $Username = substr($line, 0, strpos($line, '/'));
-            }
-        }
-    }
-    return $Username;
-}
-//****GetUsername******************************************************************************************************/
-
-//****GetComment*******************************************************************************************************/
-function GetComment($NbCommentaire){
-    $Fichier = "../BD/photoManager.txt";
-    $handle = fopen($Fichier, 'r');
-    if($handle) {
-        while(($line = fgets($handle)) !== false) {
-            $Array[] = $line;
-        }
-        fclose($handle);
-    }
-    if(!empty($Array)) {
-        for ($i = count($Array) - 1; $i >= 0; $i--) {
-            if ($Array[$i] != "") {
-                $line = $Array[$i];
-                $Guid = getStringBetween($line, '_', '¯');
-                $NbCommentaire = 0;
-                if($Commentaire = file_get_contents($Fichier))
-                {
-                    $NbCommentaire = substr_count($Commentaire,$Guid);
-                }
-            }
-        }
-    }
-    return $NbCommentaire;
-}
-//****GetComment*******************************************************************************************************/
 
 //****SortDirectory****************************************************************************************************/
 function Sort_Directory_Files_By_Last_Modified($dir, $sort_type = 'descending', $date_format = "F d Y H:i:s.")
@@ -445,14 +396,14 @@ function upload_Image()
         }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk != 0) {
-            //Rajouter Au fichier Text
-            date_default_timezone_set("America/Montreal");
-            if($Handle = fopen("../BD/photoManager.txt",'a'))
-            {
-                fwrite($Handle,$_SESSION['username']. "/" . $_POST['upload_img'] . "~" . date('j M Y, G:i:s') . "_" .$_POST['upload_img'] . "¯" . "\n" );
-            }
 
             if (move_uploaded_file($file_tmp_name, "../images/$file_name")) {
+                //Rajouter Au fichier Text
+                date_default_timezone_set("America/Montreal");
+                if($Handle = fopen("../BD/photoManager.txt",'a'))
+                {
+                    fwrite($Handle,$_SESSION['username']. "/" . $_POST['upload_img'] . "~" . date('j M Y, G:i:s') . "_" . $_POST['upload_img'] . "¯" . "\n" );
+                }
                 header("Refresh:0");
                 echo "The file " . $file_name . " has been uploaded.";
             }
