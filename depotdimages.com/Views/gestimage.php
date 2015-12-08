@@ -43,32 +43,33 @@ verifyConnected();
         <?php
         echo "<a><img style='max-height:600px; max-width: 800px;' src=".$_SESSION['imageSelect'] . "/></a>";
         ?>
-        <hr><br/>
+        <br/><br/><hr><br/>
     </div>
     <div class="wrap" align="center">
-    <form action="../Controller/functions.php" method="post">
-        <table>
-            <tr><td><textarea class="inputText" placeholder="Comment" id="Password" style=" resize: none;" name="comment" rows="10" cols="50" maxlength="150" title=""></textarea></td></tr>
-            <tr><td><input class="button" type="submit" name="CommentaireEnvoyer" value="Comment"></td></tr>
-        </table>
-        <br/><hr/><br/>
-        <?php
-        CommentManager();
-        ?>
-    </form>
-    </div>
-    <div class="wrap">
         <form action="../Controller/functions.php" method="post">
-            <?php if(PhotoManager() == $_SESSION['username'])
-            {
-                ?>
-                "<h1>Delete your's photos: </h1>
-                <input class="button" type="submit" value="Delete Image" name="SupprimerImage"/>"
-                <?php
-            }
+            <table>
+                <tr><td><textarea class="inputText" placeholder="Comment" id="Password" style=" resize: none;" name="comment" rows="10" cols="50" maxlength="150" title=""></textarea></td></tr>
+                <tr><td><input class="button" type="submit" name="CommentaireEnvoyer" value="Comment"></td></tr>
+            </table>
+            <br/><hr/><br/><br/>
+            <?php
+            CommentManager();
             ?>
+            <br/><hr/><br/>
         </form>
     </div>
+    <?php if(PhotoManager() == $_SESSION['username'])
+    {
+        ?>
+        <div class="wrap">
+            <form action="../Controller/functions.php" method="post">
+                "<h1>Delete your's photos: </h1>
+                <input class="button" type="submit" value="Delete Image" name="SupprimerImage"/>"
+            </form>
+        </div>
+        <?php
+    }
+    ?>
     </body>
     </html>
 <?php

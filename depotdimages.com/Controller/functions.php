@@ -319,8 +319,10 @@ function getImages()
 }
 //****DisplayImage*****************************************************************************************************/
 
+//****GetUsername******************************************************************************************************/
 function GetUsername($Username) {
-    $handle = fopen("../BD/photoManager.txt", 'r');
+    $Fichier = "../BD/photoManager.txt";
+    $handle = fopen($Fichier, 'r');
     if ($handle) {
         while (($line = fgets($handle)) !== false) {
             $Array[] = $line;
@@ -337,9 +339,12 @@ function GetUsername($Username) {
     }
     return $Username;
 }
+//****GetUsername******************************************************************************************************/
+
+//****GetComment*******************************************************************************************************/
 function GetComment($NbCommentaire){
-    $Fichier = "../BD/commentManager.txt";
-    $handle = fopen("../BD/commentManager.txt", 'r');
+    $Fichier = "../BD/photoManager.txt";
+    $handle = fopen($Fichier, 'r');
     if($handle) {
         while(($line = fgets($handle)) !== false) {
             $Array[] = $line;
@@ -352,14 +357,16 @@ function GetComment($NbCommentaire){
                 $line = $Array[$i];
                 $Guid = getStringBetween($line, '_', '¯');
                 $NbCommentaire = 0;
-                if ($Commentaire = file_get_contents($Fichier)) {
-                    $NbCommentaire = substr_count($Commentaire, $Guid);
+                if($Commentaire = file_get_contents($Fichier))
+                {
+                    $NbCommentaire = substr_count($Commentaire,$Guid);
                 }
             }
         }
     }
     return $NbCommentaire;
 }
+//****GetComment*******************************************************************************************************/
 
 //****SortDirectory****************************************************************************************************/
 function Sort_Directory_Files_By_Last_Modified($dir, $sort_type = 'descending', $date_format = "F d Y H:i:s.")
@@ -438,6 +445,13 @@ function upload_Image()
         }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk != 0) {
+            //Rajouter Au fichier Text
+            date_default_timezone_set("America/Montreal");
+            if($Handle = fopen("../BD/photoManager.txt",'a'))
+            {
+                fwrite($Handle,$_SESSION['username']. "/" . $_POST['upload_img'] . "~" . date('j M Y, G:i:s') . "_" .$_POST['upload_img'] . "¯" . "\n" );
+            }
+
             if (move_uploaded_file($file_tmp_name, "../images/$file_name")) {
                 header("Refresh:0");
                 echo "The file " . $file_name . " has been uploaded.";
@@ -458,12 +472,8 @@ if (isset($_POST['CommentaireEnvoyer'])) {
     $Fichier = "../BD/commentManager.txt";
     if ($_POST['comment'] != "") {
         if ($Handle = fopen($Fichier, 'a')) {
-            //devait faire session_start pour arranger les probleme de session, je trouve sa bizarre mais bref, sa marche la
             session_start();
-
             fwrite($Handle, "*" . $_SESSION['username'] . "_" . $_POST['comment'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['imageSelect'] . "\n");
-
-            //on ne peut pas jsute resfresh pour une raison obscur que je ne sais pas lol
             header('Location: ../Views/gestimage.php?image='. $_SESSION['imageSelect'] );
         }
     }
@@ -505,8 +515,8 @@ function CommentManager() //A Qui commentaire photo
 
 //****SupprimerImage***************************************************************************************************/
 if (isset($_POST['SupprimerImage'])) {
-    unlink($_POST['Image']);
-    $Fichier = "photoManager.txt";
+    unlink($_POST['imageSelect']);
+    $Fichier = "../BD/photoManager.txt";
     $substring = substr($_SESSION['imageSelect'], strpos($_SESSION['imageSelect'], '/'), sizeof($_SESSION['imageSelect']) - 6);
     if ($PHOTO = file_get_contents($Fichier)) {
         $PHOTO = str_replace($substring, "", $PHOTO);
