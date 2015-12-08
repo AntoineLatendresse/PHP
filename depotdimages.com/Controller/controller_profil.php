@@ -26,6 +26,7 @@ if(isset($_POST["Username"]) && isset($_POST['NewPassword']) && isset($_POST['Ne
     $newPasswordConfirm = $_POST['NewPasswordConfirm'];
     $firstName =  $_POST['FirstName'];
     $lastName =  $_POST['LastName'];
+    header('Location: ../Views/index.php');
 }
 
 if(isset($_POST["stayConnected"]))

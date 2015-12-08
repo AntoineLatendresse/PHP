@@ -34,6 +34,22 @@ verifyConnected();
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.js"></script>
+        <script type="text/javascript">
+            $(document).ready(
+                function(){
+                    $('input:submit').attr('disabled',true);
+                    $('input:file').change(
+                        function(){
+                            if ($(this).val()){
+                                $('input:submit').removeAttr('disabled');
+                            }
+                            else {
+                                $('input:submit').attr('disabled',true);
+                            }
+                        });
+                });
+        </script>
     </head>
     <body>
     <div class="wrap">
@@ -48,7 +64,7 @@ verifyConnected();
         <h1>Upload your's photos: </h1>
         <form action="<?php upload_Image();?>" method="post" enctype="multipart/form-data">
             <input class="inputText" type="file" name="image"/>
-            <input class="button" type="submit" value="Upload Image" name="upload_img"/>
+            <input class="button" type="submit" value="Upload Image" name="upload_img" disabled />
         </form>
     </div>
     </body>

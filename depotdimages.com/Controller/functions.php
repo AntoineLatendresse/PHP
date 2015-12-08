@@ -100,7 +100,7 @@ function updateProfil($username, $newPassword, $firstName, $lastName)
 
 function verifyConnected()
 {
-    if(empty($_SESSION['connected'])) {
+    if(!isset($_SESSION['connected']) && $_SESSION['connected'] != '') {
         header('Location: http://' . $_SERVER['HTTP_HOST'] . 'depotdimages.com/Views/login.php');
         exit;
     }
@@ -290,6 +290,7 @@ function getImages()
             }
         }
     }
+    $result = count($info);
     foreach($info as $key => $detail)
     {
         $out = strlen($detail['file']) > 20 ? substr($detail['file'],0,20)."..." : $detail['file'];
@@ -301,8 +302,20 @@ function getImages()
                         <small>',GetComment($detail['file']),'</small>
                      </div>
                    </a>';
-        if($key % $images_per_row == 0) { echo '<div class="clear"></div>'; }
+        if($result % 3 == 0)
+        {
+            if($key % $images_per_row == 0) { echo '<div class="clear"></div>'; }
+        }
+        elseif($result % 3 == 1)
+        {
+            if($key % $images_per_row == 1) { echo '<div class="clear"></div>'; }
+        }
+        elseif($result % 3 == 2)
+        {
+            if($key % $images_per_row == 2) {echo '<div class="clear"></div>';}
+        }
     }
+    echo '<div class="clear"></div>';
 }
 //****DisplayImage*****************************************************************************************************/
 

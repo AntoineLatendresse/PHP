@@ -52,7 +52,10 @@ verifyConnected();
     </form>
 </div>
 <div class="wrap">
+    <h1>_Last Connected Users_</h1>
+    <hr><br/>
     <?php listPastUsers(); ?>
+    <br/><hr><br/>
 </div>
 </body>
 </html>
