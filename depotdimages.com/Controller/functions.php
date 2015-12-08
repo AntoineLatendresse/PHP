@@ -292,9 +292,10 @@ function getImages()
     }
     foreach($info as $key => $detail)
     {
+        $out = strlen($detail['file']) > 20 ? substr($detail['file'],0,20)."..." : $detail['file'];
         echo '<a href="gestimage.php?image=../images/',$detail['file'],'" name="imageClick" type="submit" class="photo-link smoothbox"><img src="',$thumbs_dir,$detail['file'],'" />
                     <div class=\'text-center\'>
-                        <small><b style="max-lines: 1">',$detail['file'],'</b></small><br>
+                        <small><b>',$out,'</b></small><br>
                         <small>',GetUsername($detail['file']),'</small><br>
                         <small>',$detail['date'],'</small><br>
                         <small>',GetComment($detail['file']),'</small>
