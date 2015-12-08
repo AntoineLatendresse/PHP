@@ -293,13 +293,15 @@ function getImages()
     $result = count($info);
     foreach($info as $key => $detail)
     {
-        $out = strlen($detail['file']) > 20 ? substr($detail['file'],0,20)."..." : $detail['file'];
+        $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $detail['file']);
+        $out = strlen($withoutExt) > 20 ? substr($withoutExt,0,20)."..." : $withoutExt;
         echo '<a href="gestimage.php?image=../images/',$detail['file'],'" name="imageClick" type="submit" class="photo-link smoothbox"><img src="',$thumbs_dir,$detail['file'],'" />
-                    <div class=\'text-center\'>
+                    <div>
                         <small><b style="font-size:18px ">',$out,'</b></small><br>
-                        <small>',$detail['file'],'</small><br>
-                        <small>',$detail['date'],'</small><br>
-                        <small>',$detail['file'],'</small>
+                        <small><b style="font-size:18px "> - - - - - - - - - - - - - - - - </b></small><br>
+                        <small>', 'Propriétaire: ',getOwner($detail['file']),'</small><br>
+                        <small>','Date: ',$detail['date'],'</small><br>
+                        <small>','Commentaire: ',getNbCommentaire($detail['file']),'</small>
                      </div>
                    </a>';
         if($result % 3 == 0)
@@ -318,6 +320,57 @@ function getImages()
     echo '<div class="clear"></div>';
 }
 //****DisplayImage*****************************************************************************************************/
+
+function getOwner($fileName)
+{
+    $handle = fopen("../BD/photoManager.txt", 'r');
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            $Array[] = $line;
+        }
+        fclose($handle);
+    }
+    if (!empty($Array)) {
+        for ($i = count($Array) - 1; $i >= 0; $i--) {
+            if ($Array[$i] != "") {
+                $line = $Array[$i];
+                $User = substr($line, 0, strpos($line, '/'));
+                $Titre = getStringBetween($line, '/', '~');
+                if($Titre == $fileName){
+                    return $User;
+                }
+            }
+        }
+    }
+    return null;
+}
+function getNbCommentaire($fileName)
+{
+    $handle = fopen("../BD/photoManager.txt", 'r');
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            $Array[] = $line;
+        }
+        fclose($handle);
+    }
+    if (!empty($Array)) {
+        for ($i = count($Array) - 1; $i >= 0; $i--) {
+            if ($Array[$i] != "") {
+                $line = $Array[$i];
+                $Titre = getStringBetween($line, '/', '~');
+                $Guid = getStringBetween($line, '_', '¯');
+                $NbCommentaire = 0;
+                if ($Commentaire = file_get_contents("../BD/commentManager.txt")) {
+                        $NbCommentaire = substr_count($Commentaire, $Guid);
+                }
+                if($Titre == $fileName) {
+                    return $NbCommentaire;
+                }
+            }
+        }
+    }
+    return null;
+}
 
 //****SortDirectory****************************************************************************************************/
 function Sort_Directory_Files_By_Last_Modified($dir, $sort_type = 'descending', $date_format = "F d Y H:i:s.")
