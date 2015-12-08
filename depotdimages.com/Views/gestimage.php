@@ -41,8 +41,10 @@ verifyConnected();
         <h1>_Your's photo, but BIGGER_</h1>
         <hr><br/>
         <?php
-        echo "<a><img style='max-height:600px; max-width: 800px;' src=".$_SESSION['imageSelect'] . "/></a>";
-        ?>
+        $string = $_SESSION['imageSelect'];
+        echo  substr($string, 10)  ?>
+        <hr><br/>
+        <?php echo "<a><img style='max-height:600px; max-width: 800px;' src=". $_SESSION['imageSelect'] . "/></a>"; ?>
         <br/><br/><hr><br/>
     </div>
     <div class="wrap" align="center">
@@ -58,13 +60,13 @@ verifyConnected();
             <br/><hr/><br/>
         </form>
     </div>
-    <?php if(PhotoManager() == $_SESSION['username'])
+    <?php if($_SESSION['username'] == PhotoManager() || $_SESSION['username'] == 'Admin')
     {
         ?>
         <div class="wrap">
-            <form action="../Controller/functions.php" method="post">
-                "<h1>Delete your's photos: </h1>
-                <input class="button" type="submit" value="Delete Image" name="SupprimerImage"/>"
+            <form action="../Controller/functions.php" method="post" enctype="multipart/form-data">
+                <h1>Delete your's photos: </h1>
+                <input class="button" type="submit" value="Delete Image" name="SupprimerImage"/>
             </form>
         </div>
         <?php

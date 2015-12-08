@@ -321,6 +321,7 @@ function getImages()
 }
 //****DisplayImage*****************************************************************************************************/
 
+//****getOwner*********************************************************************************************************/
 function getOwner($fileName)
 {
     $handle = fopen("../BD/photoManager.txt", 'r');
@@ -344,6 +345,9 @@ function getOwner($fileName)
     }
     return null;
 }
+//****getOwner*********************************************************************************************************/
+
+//****getNbCommentaire*************************************************************************************************/
 function getNbCommentaire($fileName)
 {
     $handle = fopen("../BD/photoManager.txt", 'r');
@@ -371,6 +375,7 @@ function getNbCommentaire($fileName)
     }
     return null;
 }
+//****getNbCommentaire*************************************************************************************************/
 
 //****SortDirectory****************************************************************************************************/
 function Sort_Directory_Files_By_Last_Modified($dir, $sort_type = 'descending', $date_format = "F d Y H:i:s.")
@@ -519,7 +524,18 @@ function CommentManager() //A Qui commentaire photo
 
 //****SupprimerImage***************************************************************************************************/
 if (isset($_POST['SupprimerImage'])) {
-    unlink($_POST['imageSelect']);
+    //Session Start
+    session_start();
+
+    //Folder Settings
+    $images_dir = $_SESSION['imageSelect'];
+    $thumbs_dir = '../thumbs/';
+    $string = $_SESSION['imageSelect'];
+    $newString = substr($string, 10);
+
+    //Unlink
+    unlink($_SESSION['imageSelect']);
+    unlink($thumbs_dir . $newString);
     $Fichier = "../BD/photoManager.txt";
     $substring = substr($_SESSION['imageSelect'], strpos($_SESSION['imageSelect'], '/'), sizeof($_SESSION['imageSelect']) - 6);
     if ($PHOTO = file_get_contents($Fichier)) {
