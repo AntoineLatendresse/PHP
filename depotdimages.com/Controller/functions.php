@@ -542,17 +542,22 @@ if (isset($_POST['SupprimerImage'])) {
     // + Fichier photoManager Erase
     $photoText = "../BD/photoManager.txt";
     $commentText = "../BD/commentManager.txt";
-    if ($phototxt = file_get_contents($photoText)) {
-        $phototxt = str_replace($newString, "", $phototxt);
 
-        file_put_contents($photoText, $phototxt);
-    }
-    // + Fichier commentManager Erase
-    if ($commenttxt = file_get_contents($commentText)) {
-        $commenttxt = str_replace($newString, "", $commenttxt);
+    file_put_contents($photoText, implode('',
+        array_map(function($data) {
+            $string = $_SESSION['imageSelect'];
+            $newString = substr($string, 10);
+            return stristr($data,$newString) ? "" : $data;
+        }, file($photoText))
+    ));
 
-        file_put_contents($commentText, $commenttxt);
-    }
+    file_put_contents($commentText, implode('',
+        array_map(function($data) {
+            $string = $_SESSION['imageSelect'];
+            $newString = substr($string, 10);
+            return stristr($data,$newString) ? "" : $data;
+        }, file($commentText))
+    ));
     header('Location: ../Views/index.php');
 }
 //****SupprimerImage***************************************************************************************************/
