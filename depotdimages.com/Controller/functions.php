@@ -32,7 +32,7 @@ function showFooter()
 {
     ?>
     <div class="wrap">
-        <h1 class="header-heading"> Copyright © 2015 | depotdimages.com by AL&&YD Themes </h1>
+        <h1 class="header-heading"> Copyright © 2016 | depotdimages.com by Antoine L. && Yannick D. </h1>
     </div>
     <?php
 }
@@ -77,10 +77,12 @@ function menu()
 //****BDCONNECT********************************************************************************************************/
 function dbConnect()
 {
-    try {
+    try
+    {
         return new PDO('mysql:host=localhost;dbname=depotimages', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
-    catch (Exception $e) {
+    catch (Exception $e)
+    {
         die('Erreur : ' . $e->getMessage());
     }
 }
@@ -204,7 +206,7 @@ function listPastUsers()
             $Array[] = $lineLog;
         }
         if (!empty($Array)) {
-            $cpt = 1;
+            $number = 1;
             for ($i = count($Array) - 1; $i >= count($Array) - 10 ; $i--) {
                 if($i >= 0)
                 {
@@ -213,12 +215,12 @@ function listPastUsers()
                     $ipadress = getStringBetween($Array[$i],']/','-');
                     echo "
             <tr>
-              <td>$cpt</td>
+              <td>$number</td>
               <td>$username</td>
               <td>$date</td>
               <td>$ipadress</td>
             </tr>";
-                    $cpt++;
+                    $number++;
                 }
             }
         }
@@ -365,7 +367,7 @@ function getNbCommentaire($fileName)
                 $Guid = getStringBetween($line, '_', '¯');
                 $NbCommentaire = 0;
                 if ($Commentaire = file_get_contents("../BD/commentManager.txt")) {
-                        $NbCommentaire = substr_count($Commentaire, $Guid);
+                    $NbCommentaire = substr_count($Commentaire, $Guid);
                 }
                 if($Titre == $fileName) {
                     return $NbCommentaire;
@@ -536,12 +538,20 @@ if (isset($_POST['SupprimerImage'])) {
     //Unlink
     unlink($_SESSION['imageSelect']);
     unlink($thumbs_dir . $newString);
-    $Fichier = "../BD/photoManager.txt";
-    $substring = substr($_SESSION['imageSelect'], strpos($_SESSION['imageSelect'], '/'), sizeof($_SESSION['imageSelect']) - 6);
-    if ($PHOTO = file_get_contents($Fichier)) {
-        $PHOTO = str_replace($substring, "", $PHOTO);
 
-        file_put_contents($Fichier, $PHOTO);
+    // + Fichier photoManager Erase
+    $photoText = "../BD/photoManager.txt";
+    $commentText = "../BD/commentManager.txt";
+    if ($phototxt = file_get_contents($photoText)) {
+        $phototxt = str_replace($newString, "", $phototxt);
+
+        file_put_contents($photoText, $phototxt);
+    }
+    // + Fichier commentManager Erase
+    if ($commenttxt = file_get_contents($commentText)) {
+        $commenttxt = str_replace($newString, "", $commenttxt);
+
+        file_put_contents($commentText, $commenttxt);
     }
     header('Location: ../Views/index.php');
 }
@@ -562,11 +572,11 @@ function PhotoManager() //A Qui l'image
             fclose($handle);
         }
     }
-    $Trouver = false;
-    for ($i = 0; $i < count($Array) && !$Trouver; $i++) {
-        if (!$Trouver && $_SESSION['connected'] == substr($Array[$i], 0, strpos($Array[$i], '/')) &&  $_SESSION['imageSelect'] == "../images/".getStringBetween($Array[$i], '_', '¯')) {
+    $findWho = false;
+    for ($i = 0; $i < count($Array) && !$findWho; $i++) {
+        if (!$findWho && $_SESSION['connected'] == substr($Array[$i], 0, strpos($Array[$i], '/')) &&  $_SESSION['imageSelect'] == "../images/".getStringBetween($Array[$i], '_', '¯')) {
             $Proprétaire = substr($Array[$i], 0, strpos($Array[$i], '/'));
-            $Trouver = true;
+            $findWho = true;
         }
     }
     return $Proprétaire;
