@@ -79,7 +79,7 @@ function dbConnect()
 {
     try
     {
-        return new PDO('mysql:host=localhost;dbname=depotimages', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        return new PDO('mysql:host=localhost;dbname=db_dyla2k6', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
     catch (Exception $e)
     {
@@ -102,8 +102,8 @@ function updateProfil($username, $newPassword, $firstName, $lastName)
 
 function verifyConnected()
 {
-    if(!isset($_SESSION['connected']) && $_SESSION['connected'] != '') {
-        header('Location: http://' . $_SERVER['HTTP_HOST'] . 'depotdimages.com/Views/login.php');
+    if(!isset($_SESSION['connected']) && $_SESSION['connected'] == '') {
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/php/depotdimages.com/Views/login.php');
         exit;
     }
 }
@@ -421,10 +421,8 @@ function Sort_Directory_Files_By_Last_Modified($dir, $sort_type = 'descending', 
 //****SortDirectory****************************************************************************************************/
 
 //****UploadImage******************************************************************************************************/
-function upload_Image()
-{
     // Check if image file is a actual image or fake image
-    if(isset($_POST["upload_img"])) {
+    if(isset($_POST['upload_img'])) {
         //$uploadOk = 1;
         $file_name = $_FILES['image']['name'];
         $file_type = pathinfo("../images/$file_name",PATHINFO_EXTENSION);
@@ -432,26 +430,32 @@ function upload_Image()
         $file_tmp_name = $_FILES['image']['tmp_name'];
         $check = getimagesize($file_tmp_name);
         if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
+            $message = "File is an image - " . $check["mime"] . ".";
+            echo "<script type='text/javascript'>alert('$message');</script>";
             $uploadOk = 1;
         }
         else {
-            echo "File is not an image.";
+            $message = "File is not an image.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
             $uploadOk = 0;
         }
         // Check if file already exists
         if (file_exists("../images/$file_name")) {
-            echo "Sorry, file already exists.";
+            $message = "Sorry, file already exists.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
             $uploadOk = 0;
         }
         // Check file size
         if ($file_size > 10485760) {
-            echo "Sorry, your file is too large.";
+            $message = "Sorry, your file is too large.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
             $uploadOk = 0;
         }
         // Allow certain file formats
-        if($file_type != "gif" && $file_type != "jpg" && $file_type != "jpe" && $file_type != "jpeg" && $file_type != "gif") {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        if($file_type != "gif" && $file_type != "jpg" && $file_type != "png" && $file_type != "jpeg") {
+
+            $message=  "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
@@ -462,20 +466,24 @@ function upload_Image()
                 date_default_timezone_set("America/Montreal");
                 if($Handle = fopen("../BD/photoManager.txt",'a'))
                 {
-                    fwrite($Handle,$_SESSION['username']. "/" . $_POST['upload_img'] . "~" . date('j M Y, G:i:s') . "_" . $_POST['upload_img'] . "¯" . "\n" );
+                    session_start();
+                    fwrite($Handle, $_SESSION['username']. "/" . $file_name . "~" . date('j M Y, G:i:s') . "_" . $file_name . "¯" . "\n");
                 }
-                header("Refresh:0");
-                echo "The file " . $file_name . " has been uploaded.";
+                header('Location: ../Views/index.php');
+                $message = "The file " . $file_name . " has been uploaded.";
+                echo "<script type='text/javascript'>alert('$message');</script>";
             }
             else {
-                echo "Sorry, there was an error uploading your file.";
+                $message = "Sorry, there was an error uploading your file.";
+                echo "<script type='text/javascript'>alert('$message');</script>";
             }
         }
         else{ // if everything is ok, try to upload file
-            echo "Sorry, your file was not uploaded.";
+            $message = "Sorry, your file was not uploaded.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
         }
     }
-}
+
 //****UploadImage******************************************************************************************************/
 
 //****EnvoyerComment***************************************************************************************************/
@@ -484,7 +492,7 @@ if (isset($_POST['CommentaireEnvoyer'])) {
     if ($_POST['comment'] != "") {
         if ($Handle = fopen($Fichier, 'a')) {
             session_start();
-            fwrite($Handle, "*" . $_SESSION['username'] . "_" . $_POST['comment'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['imageSelect'] . "\n");
+            fwrite($Handle, "\n" . "*" . $_SESSION['username'] . "_" . $_POST['comment'] . "/" . date('j M Y, G:i:s') . "¯" . "~" . $_SESSION['imageSelect'] . "\n");
             header('Location: ../Views/gestimage.php?image='. $_SESSION['imageSelect'] );
         }
     }

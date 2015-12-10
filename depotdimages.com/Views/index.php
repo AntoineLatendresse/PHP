@@ -34,7 +34,7 @@ verifyConnected();
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.js"></script>
+        <script type="text/javascript" src="../Scripts/jquery2.0.js"></script>
         <script type="text/javascript">
             $(document).ready(
                 function(){
@@ -62,7 +62,7 @@ verifyConnected();
     </div>
     <div class="wrap">
         <h1>Upload your's photos: </h1>
-        <form action="<?php upload_Image();?>" method="post" enctype="multipart/form-data">
+        <form action="../Controller/functions.php" method="post" enctype="multipart/form-data">
             <input class="inputText" type="file" name="image"/>
             <input class="button" type="submit" value="Upload Image" name="upload_img" disabled />
         </form>

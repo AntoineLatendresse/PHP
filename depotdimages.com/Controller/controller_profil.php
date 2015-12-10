@@ -38,13 +38,15 @@ if(isset($_POST["stayConnected"]))
 // On vérifie si des champs sont vides
 if (empty($_POST["Username"]))
 {
-    $error_fieldsempty = '- Un ou plusieurs champs de texte sont vides. Veuillez les remplir. \n';
+    $message = '- Un ou plusieurs champs de texte sont vides. Veuillez les remplir. \n';
+    echo "<script type='text/javascript'>alert('$message');</script>";
     $i++;
 }
 
 if($newPassword != $newPasswordConfirm)
 {
-    $error_passwordconfirm = '- Le mot de passe et sa confirmation sont différents. \n';
+    $message = '- Le mot de passe et sa confirmation sont différents. \n';
+    echo "<script type='text/javascript'>alert('$message');</script>";
     $i++;
 }
 
